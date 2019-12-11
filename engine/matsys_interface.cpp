@@ -450,7 +450,8 @@ void OverrideMaterialSystemConfig( MaterialSystem_Config_t &config )
 		if ( !V_stricmp( gameName, "portal" ) ||
 			 !V_stricmp( gameName, "tf" ) )
 		{
-			mat_supportflashlight.SetValue( false );
+			//mat_supportflashlight.SetValue( false ); // Overriden, allows for flashlight
+			mat_supportflashlight.SetValue( true );
 		}
 		else
 		{

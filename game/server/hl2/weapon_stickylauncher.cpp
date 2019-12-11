@@ -5,6 +5,7 @@
 // $NoKeywords: $
 //=============================================================================
 
+
 #include "cbase.h"
 #include "NPCEvent.h"
 #include "basehlcombatweapon.h"
@@ -27,6 +28,7 @@ static void LaunchStickyBomb( CBaseCombatCharacter *pOwner, const Vector &origin
 // CWeaponStickyLauncher
 //-----------------------------------------------------------------------------
 
+/*
 class CWeaponStickyLauncher : public CBaseHLCombatWeapon
 {
 	DECLARE_CLASS( CWeaponStickyLauncher, CBaseHLCombatWeapon );
@@ -239,11 +241,15 @@ void CWeaponStickyLauncher::ItemPostFrame( void )
 	BaseClass::ItemPostFrame();
 }
 
+*/
+
 /*
 ==================================================
 AddViewKick
 ==================================================
 */
+
+/*
 
 void CWeaponStickyLauncher::AddViewKick( void )
 {
@@ -439,3 +445,4 @@ void LaunchStickyBomb( CBaseCombatCharacter *pOwner, const Vector &origin, const
 	CStickyBomb *pGrenade = (CStickyBomb *)CBaseEntity::Create( "grenade_stickybomb", origin, vec3_angle, pOwner );
 	pGrenade->SetVelocity( direction * 1200, vec3_origin );
 }
+*/

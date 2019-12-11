@@ -7,6 +7,7 @@
 #include "cbase.h"
 #include "weapon_csbase.h"
 #include "fx_cs_shared.h"
+#include "particle_parse.h"
 
 
 #if defined( CLIENT_DLL )
@@ -103,6 +104,9 @@ void CWeaponElite::Precache()
 	m_inPrecache = true;
 	BaseClass::Precache();
 
+	PrecacheParticleSystem( "muzzle_smoke_mp5_flash");
+	PrecacheParticleSystem( "muzzle_smoke_mp5" );
+	PrecacheParticleSystem( "muzzle_glow_mp5" );
 	PrecacheModel( "models/weapons/w_eq_eholster_elite.mdl" );
 	PrecacheModel( "models/weapons/w_eq_eholster.mdl" );
 	PrecacheModel( "models/weapons/w_pist_elite_single.mdl" );
@@ -299,8 +303,19 @@ void CWeaponElite::WeaponIdle()
 			data.m_nAttachmentIndex = m_bFireRight?2:1; // toggle muzzle flash
 			data.m_flScale = GetCSWpnData().m_flMuzzleScale;
 		
-			DispatchEffect( "CS_MuzzleFlash", data );
+			Vector vAttachment;
+			QAngle dummyAngles;
+			pViewModel->GetAttachment( data.m_nAttachmentIndex, vAttachment, dummyAngles );
+			
 
+			//DispatchParticleEffect( "weapon_glock_muzzleflash", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
+			DispatchParticleEffect( "muzzle_smoke_mp5_flash", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
+			DispatchParticleEffect( "muzzle_smoke_mp5", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
+			DispatchParticleEffect( "muzzle_glow_mp5", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
+			
+			DispatchEffect( "CS_MuzzleFlash", data );
+			
+			
 			return true;
 		}
 

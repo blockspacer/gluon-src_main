@@ -3,7 +3,6 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="Client (HL2)"
-	ProjectGUID="{4FEEDB5C-54D5-41F5-A52A-ED738B40D932}"
 	>
 	<Platforms>
 		<Platform
@@ -25,7 +24,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="if EXIST ..\..\..\game\hl2\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\hl2\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q $(TargetDir)$(TargetName)_converted.dll&#x0D;&#x0A;set path=..\..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\..\devtools\bin\vpc.exe ..\..\devtools\bin\vpc.exe -crc client_hl2.vpc e39d9571 -crc ..\..\game\client\client_base.vpc e5afaf81 -crc ..\..\vpc_scripts\source_dll_x360_base.vpc df878f85 -crc ..\..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\..\vpc_scripts\source_dll_x360_debug.vpc b03eba60 -crc ..\..\vpc_scripts\source_dll_x360_release.vpc 0f313f3e&#x0D;&#x0A;"
+				CommandLine="if EXIST ..\..\..\game\hl2\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\hl2\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q $(TargetDir)$(TargetName)_converted.dll&#x0D;&#x0A;set path=..\..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\..\devtools\bin\vpc.exe ..\..\devtools\bin\vpc.exe -crc client_hl2.vpc e39d9571 -crc ..\..\game\client\client_base.vpc eb408ced -crc ..\..\vpc_scripts\source_dll_x360_base.vpc df878f85 -crc ..\..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\..\vpc_scripts\source_dll_x360_debug.vpc b03eba60 -crc ..\..\vpc_scripts\source_dll_x360_release.vpc 0f313f3e&#x0D;&#x0A;"
 				ExcludedFromBuild="false"
 			/>
 			<Tool
@@ -151,6 +150,8 @@
 				ProjectDefaults="..\..\common\hl2orange.xml"
 				TitleID="0x4541080F"
 				ExportByName="false"
+				Privilege_NoODDMapping="false"
+				Privilege_PAL50Incompatible="false"
 			/>
 			<Tool
 				Name="VCBscMakeTool"
@@ -187,7 +188,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="if EXIST ..\..\..\game\hl2\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\hl2\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q $(TargetDir)$(TargetName)_converted.dll&#x0D;&#x0A;set path=..\..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\..\devtools\bin\vpc.exe ..\..\devtools\bin\vpc.exe -crc client_hl2.vpc e39d9571 -crc ..\..\game\client\client_base.vpc e5afaf81 -crc ..\..\vpc_scripts\source_dll_x360_base.vpc df878f85 -crc ..\..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\..\vpc_scripts\source_dll_x360_debug.vpc b03eba60 -crc ..\..\vpc_scripts\source_dll_x360_release.vpc 0f313f3e&#x0D;&#x0A;"
+				CommandLine="if EXIST ..\..\..\game\hl2\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\hl2\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q $(TargetDir)$(TargetName)_converted.dll&#x0D;&#x0A;set path=..\..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\..\devtools\bin\vpc.exe ..\..\devtools\bin\vpc.exe -crc client_hl2.vpc e39d9571 -crc ..\..\game\client\client_base.vpc eb408ced -crc ..\..\vpc_scripts\source_dll_x360_base.vpc df878f85 -crc ..\..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\..\vpc_scripts\source_dll_x360_debug.vpc b03eba60 -crc ..\..\vpc_scripts\source_dll_x360_release.vpc 0f313f3e&#x0D;&#x0A;"
 				ExcludedFromBuild="false"
 			/>
 			<Tool
@@ -300,6 +301,8 @@
 				ProjectDefaults="..\..\common\hl2orange.xml"
 				TitleID="0x4541080F"
 				ExportByName="false"
+				Privilege_NoODDMapping="false"
+				Privilege_PAL50Incompatible="false"
 			/>
 			<Tool
 				Name="VCBscMakeTool"
@@ -550,6 +553,10 @@
 			</File>
 			<File
 				RelativePath=".\c_env_fog_controller.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\c_env_global_light.cpp"
 				>
 			</File>
 			<File
@@ -1070,6 +1077,10 @@
 			</File>
 			<File
 				RelativePath=".\flashlighteffect.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\vgui2\game_controls\FloatSlider.cpp"
 				>
 			</File>
 			<File
@@ -1837,6 +1848,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\shared\singleplayer_animstate.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\shared\singleplayer_animstate.h"
+				>
+			</File>
+			<File
 				RelativePath="..\shared\SoundEmitterSystem.cpp"
 				>
 			</File>
@@ -2154,6 +2173,14 @@
 			</File>
 			<File
 				RelativePath=".\WorldDimsProxy.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\worldlight.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\worldlight.h"
 				>
 			</File>
 			<Filter
@@ -2833,7 +2860,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\lib\public\Dmxloader_360.lib"
+				RelativePath="..\..\lib\public\dmxloader_360.lib"
 				>
 			</File>
 			<File
@@ -2841,7 +2868,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\lib\public\Particles_360.lib"
+				RelativePath="..\..\lib\public\particles_360.lib"
 				>
 			</File>
 			<File
@@ -2914,6 +2941,10 @@
 			</File>
 			<File
 				RelativePath=".\baseclientrendertargets.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\gameui\BasePanel.h"
 				>
 			</File>
 			<File
@@ -3185,6 +3216,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\fmod_manager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\fmod_manager.h"
+				>
+			</File>
+			<File
 				RelativePath=".\fontabc.h"
 				>
 			</File>
@@ -3401,6 +3440,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\INPanel.h"
+				>
+			</File>
+			<File
 				RelativePath=".\input.h"
 				>
 			</File>
@@ -3454,6 +3497,18 @@
 			</File>
 			<File
 				RelativePath=".\networkstringtable_clientdll.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ngui.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ngui_handler.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ngui_handler.h"
 				>
 			</File>
 			<File
@@ -3605,6 +3660,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\VAwesomium.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\VAwesomium.h"
+				>
+			</File>
+			<File
 				RelativePath=".\vgui_basepanel.h"
 				>
 			</File>
@@ -3709,6 +3772,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\public\Awesomium\BitmapSurface.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\public\bitvec.h"
 				>
 			</File>
@@ -3754,6 +3821,10 @@
 			</File>
 			<File
 				RelativePath="..\..\public\tier1\checksum_md5.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\ChildProcess.h"
 				>
 			</File>
 			<File
@@ -3845,7 +3916,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\public\Awesomium\DataPak.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\DataSource.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\public\tier0\dbg.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\dirlist.txt&#x0A;		$File"
 				>
 			</File>
 			<File
@@ -3890,6 +3973,34 @@
 			</File>
 			<File
 				RelativePath="..\..\public\filesystem_helpers.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod_codec.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod_dsp.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod_errors.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod_memoryinfo.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod_output.h"
 				>
 			</File>
 			<File
@@ -4197,6 +4308,18 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\public\Awesomium\JSArray.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\JSObject.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\JSValue.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\public\vgui\KeyCode.h"
 				>
 			</File>
@@ -4309,11 +4432,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\public\Awesomium\Platform.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\public\PlayerState.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\public\mathlib\polyhedron.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\PrintConfig.h"
 				>
 			</File>
 			<File
@@ -4334,6 +4465,10 @@
 			</File>
 			<File
 				RelativePath="..\..\public\tier1\rangecheckedvar.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\ResourceInterceptor.h"
 				>
 			</File>
 			<File
@@ -4362,6 +4497,10 @@
 			</File>
 			<File
 				RelativePath="..\..\public\ScratchPadUtils.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\script.bat&#x0A;		$File"
 				>
 			</File>
 			<File
@@ -4409,6 +4548,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\public\Awesomium\STLHelpers.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\public\string_t.h"
 				>
 			</File>
@@ -4426,6 +4569,10 @@
 			</File>
 			<File
 				RelativePath="..\..\public\studio.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\Surface.h"
 				>
 			</File>
 			<File
@@ -4566,6 +4713,58 @@
 			</File>
 			<File
 				RelativePath="..\..\public\vtf\vtf.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\WebConfig.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\WebCore.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\WebKeyboardCodes.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\WebKeyboardEvent.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\WebMenuItem.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\WebPreferences.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\WebSession.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\WebString.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\WebStringArray.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\WebTouchEvent.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\WebURL.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\WebView.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\Awesomium\WebViewListener.h"
 				>
 			</File>
 			<File
@@ -5110,6 +5309,4 @@
 			</File>
 		</Filter>
 	</Files>
-	<Globals>
-	</Globals>
 </VisualStudioProject>

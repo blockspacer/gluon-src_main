@@ -104,6 +104,7 @@ ConVar	cl_resend	( "cl_resend","6", 0, "Delay in seconds before the client will 
 ConVar	cl_name		( "name","unnamed", FCVAR_ARCHIVE | FCVAR_USERINFO | FCVAR_PRINTABLEONLY | FCVAR_SERVER_CAN_EXECUTE, "Current user name", CL_NameCvarChanged );
 ConVar	password	( "password", "", FCVAR_ARCHIVE | FCVAR_SERVER_CANNOT_QUERY | FCVAR_DONTRECORD, "Current server access password" );
 ConVar  cl_interpolate( "cl_interpolate", "1.0", FCVAR_USERINFO | FCVAR_DEVELOPMENTONLY, "Interpolate entities on the client." );
+//extern ConVar	presented_protocol;
 
 // ---------------------------------------------------------------------------------------- //
 // C_ServerClassInfo implementation.
@@ -426,7 +427,12 @@ void CBaseClientState::SendConnectPacket (int challengeNr, int authProtocol, int
 
 	msg.WriteLong( CONNECTIONLESS_HEADER );
 	msg.WriteByte( C2S_CONNECT );
-	msg.WriteLong( PROTOCOL_VERSION );
+
+	//if(presented_protocol.GetInt() == 0){
+		msg.WriteLong( PROTOCOL_VERSION );
+	//}else{
+	//	msg.WriteLong( presented_protocol.GetInt() );
+	//}
 	msg.WriteLong( authProtocol );
 	msg.WriteLong( challengeNr );
 	msg.WriteString( GetClientName() );	// Name

@@ -48,7 +48,7 @@
 #include "tf_clientscoreboard.h"
 #endif
 
-ConVar default_fov( "default_fov", "75", FCVAR_CHEAT );
+ConVar default_fov( "default_fov", "90", FCVAR_CHEAT );
 
 void HUDMinModeChangedCallBack( IConVar *var, const char *pOldString, float flOldValue )
 {

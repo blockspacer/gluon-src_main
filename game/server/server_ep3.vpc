@@ -277,6 +277,15 @@ $Project "Server (Episode 3)"
 				$File	"hl2\weapon_smg2.cpp"
 				$File	"hl2\weapon_gauss.cpp"
 				$File	"hl2\weapon_gauss.h"
+				
+				$File	"hl2\weapon_iceaxe.cpp"
+				
+				$File	"hl2\weapon_hopwire.cpp"
+				
+				$File	"hl2\weapon_hgm1.cpp"
+				
+				$File	"hl2\weapon_sniperrifle.cpp"
+				
 			}
 
 		}

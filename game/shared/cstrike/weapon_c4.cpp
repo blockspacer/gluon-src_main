@@ -800,6 +800,9 @@ void CC4::PrimaryAttack()
 	CCSPlayer *pPlayer = GetPlayerOwner();
 	if ( !pPlayer )
 		return;
+	
+	if ( pPlayer->GetTeamNumber() == TEAM_CT )
+		 	return;
 
 	int onGround = FBitSet( pPlayer->GetFlags(), FL_ONGROUND );
 	CBaseEntity *groundEntity = (onGround) ? pPlayer->GetGroundEntity() : NULL;

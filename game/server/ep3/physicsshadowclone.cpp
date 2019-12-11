@@ -273,14 +273,14 @@ void CPhysicsShadowClone::FullSync( bool bAllowAssumedSync )
 		  )
 		{
 //#ifdef _DEBUG
-			SetMoveType( MOVETYPE_NONE ); //to kill an assert
+			SetMoveType( MOVETYPE_NONE ); //to kill an Assert
 //#endif
 			//PUSH should be used sparingly, you can't stand on a MOVETYPE_PUSH object :/
 			SetMoveType( MOVETYPE_VPHYSICS, pClonedEntity->GetMoveCollide() ); //either an unclonable movetype, or a shadow/held object
 		}
 		/*else if(sourceMoveType == MOVETYPE_STEP)
 		{
-			//SetMoveType( MOVETYPE_NONE ); //to kill an assert
+			//SetMoveType( MOVETYPE_NONE ); //to kill an Assert
 			SetMoveType( MOVETYPE_VPHYSICS, pClonedEntity->GetMoveCollide() );
 		}*/
 		else
@@ -289,7 +289,7 @@ void CPhysicsShadowClone::FullSync( bool bAllowAssumedSync )
 				SetMoveType( sourceMoveType, pClonedEntity->GetMoveCollide() );
 			//else
 			//{
-			//	SetMoveType( MOVETYPE_NONE ); //to kill an assert
+			//	SetMoveType( MOVETYPE_NONE ); //to kill an Assert
 			//	SetMoveType( MOVETYPE_PUSH, pClonedEntity->GetMoveCollide() );
 			//}
 		}
@@ -684,7 +684,7 @@ void CPhysicsShadowClone::FullSyncClonedPhysicsObjects( bool bTeleport )
 			physenv->SerializeObjectToBuffer( pSource, pBuffer, size ); //this should work across physics environments because the serializer doesn't write anything about itself to the template
 			pSource->SetGameFlags( iOldGameFlags );
 			cloneLink.pClone = m_pOwnerPhysEnvironment->UnserializeObjectFromBuffer( this, pBuffer, size, false ); //unserializer has to be in the target environment
-			assert( cloneLink.pClone ); //there should be absolutely no case where we can't clone a valid existing physics object
+			Assert( cloneLink.pClone ); //there should be absolutely no case where we can't clone a valid existing physics object
 	
 			stackfree(pBuffer);
 		}

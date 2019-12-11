@@ -21,9 +21,11 @@ void TE_DynamicLight( IRecipientFilter& filter, float delay,
 
 void CS_MuzzleFlashCallback( const CEffectData &data )
 {
+	
 	CSmartPtr<CLocalSpaceEmitter> pEmitter = 
 		CLocalSpaceEmitter::Create( "CS_MuzzleFlash", data.m_hEntity, data.m_nAttachmentIndex, 0 );
 
+	
 	if ( !pEmitter )
 		return;
 
@@ -53,6 +55,8 @@ void CS_MuzzleFlashCallback( const CEffectData &data )
 	// changed based on large clip distances
 	pEmitter->SetNearClip( 0, 5 );
 
+	
+	
 	PMaterialHandle hFlashMaterial = pEmitter->GetPMaterial( "sprites/muzzleflash4" );
 
 	for( int i=0;i<3;i++ )
@@ -67,9 +71,9 @@ void CS_MuzzleFlashCallback( const CEffectData &data )
 
 			pParticle->m_vecVelocity = vec3_origin;
 
-			pParticle->m_uchColor[0]	= 255;
-			pParticle->m_uchColor[1]	= 255;
-			pParticle->m_uchColor[2]	= 255;
+			pParticle->m_uchColor[0]	= RandomInt( 245, 255 );
+			pParticle->m_uchColor[1]	= RandomInt( 245, 255 );
+			pParticle->m_uchColor[2]	= RandomInt( 245, 255 );
 
 			pParticle->m_uchStartAlpha	= 80;
 			pParticle->m_uchEndAlpha	= 30;
@@ -82,6 +86,7 @@ void CS_MuzzleFlashCallback( const CEffectData &data )
 			pParticle->m_flRollDelta	= 0.0f;
 		}
 	}
+	
 
 	// dynamic light temporary entity for the muzzle flash
 	CPVSFilter filter(pEmitter->GetSortOrigin());
@@ -94,6 +99,7 @@ DECLARE_CLIENT_EFFECT( "CS_MuzzleFlash", CS_MuzzleFlashCallback );
 // 'X' shaped muzzleflash used by certain weapons
 void CS_MuzzleFlashXCallback( const CEffectData &data )
 {
+	
 	CSmartPtr<CLocalSpaceEmitter> pEmitter = 
 		CLocalSpaceEmitter::Create( "CS_MuzzleFlashX", data.m_hEntity, data.m_nAttachmentIndex, 0 );
 
@@ -103,6 +109,8 @@ void CS_MuzzleFlashXCallback( const CEffectData &data )
 	// changed based on large clip distances
 	pEmitter->SetNearClip( 0, 5 );
 
+	
+	
 	PMaterialHandle hFlashMaterial = pEmitter->GetPMaterial( "effects/muzzleflashX" );
 
 	SimpleParticle *pParticle = (SimpleParticle *)pEmitter->AddParticle( sizeof( SimpleParticle ),
@@ -115,22 +123,22 @@ void CS_MuzzleFlashXCallback( const CEffectData &data )
 
 		pParticle->m_vecVelocity = vec3_origin;
 
-		pParticle->m_uchColor[0]	= 255;
-		pParticle->m_uchColor[1]	= 255;
-		pParticle->m_uchColor[2]	= 255;
+		pParticle->m_uchColor[0]	= RandomInt( 245, 255 );
+		pParticle->m_uchColor[1]	= RandomInt( 245, 255 );
+		pParticle->m_uchColor[2]	= RandomInt( 245, 255 );
 
-		pParticle->m_uchStartAlpha	= 130;
+		pParticle->m_uchStartAlpha	= 230;
 		pParticle->m_uchEndAlpha	= 80;
 
-		pParticle->m_uchStartSize	= 6.0f * data.m_flScale * random->RandomFloat( 0.9, 1.1 );
+		pParticle->m_uchStartSize	= 4.2f * (data.m_flScale) * random->RandomFloat( 0.7, 1.1 );
 
-		pParticle->m_uchEndSize		= pParticle->m_uchStartSize * 0.8;
+		pParticle->m_uchEndSize		= pParticle->m_uchStartSize * 0.7;
 
-		pParticle->m_flRoll			= random->RandomFloat( -0.25, 0.25 );
+		pParticle->m_flRoll			= random->RandomFloat( 0, 360 );
 
 		pParticle->m_flRollDelta	= 0.0f;
 	}
-
+	
 	// dynamic light temporary entity for the muzzle flash
 	CPVSFilter filter(pEmitter->GetSortOrigin());
 	TE_DynamicLight( filter, 0.0, &(pEmitter->GetSortOrigin()), 255, 192, 64, 5, 70, 0.05, 768 );

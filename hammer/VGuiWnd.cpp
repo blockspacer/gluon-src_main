@@ -160,7 +160,8 @@ void CVGuiWnd::DrawVGuiPanel()
 
 	pRenderContext->Viewport( 0, 0, rect.right, rect.bottom );
 
-	pRenderContext->ClearColor4ub( m_ClearColor.r(), m_ClearColor.g(), m_ClearColor.b(), m_ClearColor.a() );
+	//pRenderContext->ClearColor4ub( m_ClearColor.r(), m_ClearColor.g(), m_ClearColor.b(), m_ClearColor.a() );
+	pRenderContext->ClearColor4ub( 0, 0, 0, m_ClearColor.a() );
 
 	pRenderContext->ClearBuffers( true, m_bClearZBuffer );
 	

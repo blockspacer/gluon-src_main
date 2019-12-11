@@ -158,6 +158,107 @@ void CWeaponPortalgun::StopLoopingSounds()
 	BaseClass::StopLoopingSounds();
 }
 
+void CWeaponPortalgun::FireHitscanBolt()
+{
+	//if( !HasAnyAmmo() )
+	//{
+	//	WeaponSound( EMPTY );
+	//	return;
+	//}
+
+	CBasePlayer *pOwner = ToBasePlayer( GetOwner() );
+
+	if ( pOwner == NULL )
+		return;
+
+	Vector vecAiming	= pOwner->GetAutoaimVector( 0 );
+	Vector vecSrc		= pOwner->Weapon_ShootPosition();
+
+	QAngle angAiming;
+	VectorAngles( vecAiming, angAiming );
+
+	// We're committed to the shot now. So take the ammo.
+	//pOwner->RemoveAmmo( 1, m_iPrimaryAmmoType );
+
+	trace_t tr;
+	// Trace the initial shot from the weapon
+	UTIL_TraceLine( vecSrc, vecSrc + vecAiming * MAX_COORD_INTEGER, MASK_SHOT, pOwner, COLLISION_GROUP_NONE, &tr );
+	//NDebugOverlay::Line( vecSrc + Vector( 0, 0, -3 ), tr.endpos, 255, 255, 0, false, 0.1f );
+
+	if( tr.m_pEnt == NULL )
+	{
+		// Bail out if we hit nothing at all.
+		return;
+	}
+
+	// Record the entity that the beam struck.
+	CBaseEntity *pObjectStruck = tr.m_pEnt;
+	
+	if( pObjectStruck->MyNPCPointer() && pObjectStruck->IsAlive() )
+	{
+		//EmitSound( "NPC_CombineBall.KillImpact" );
+		CTakeDamageInfo damageInfo( this, pOwner, tr.m_pEnt->GetHealth(), DMG_GENERIC | DMG_DISSOLVE );
+		Vector force( 0, 0, 100.0f );
+		damageInfo.SetDamageForce( force );
+		damageInfo.SetDamagePosition( tr.endpos );
+		tr.m_pEnt->TakeDamage( damageInfo );
+	}
+
+	// Mark the point where the shot entered an object.
+	//NDebugOverlay::Cross3D( tr.endpos, 8, 255, 255, 255, false, 60.0f );
+
+	// Trace the second, punched-through shot. First, we have to locate the exit point.
+	// There are two methods for this. If the shot struck the world, we have to trace out of solid.
+	// If the shot struck an entity, we simply trace again, ignoring that entity.
+	CBaseEntity *pIgnoreEnt = NULL;
+
+	if( pObjectStruck->IsWorld() )
+	{
+		pIgnoreEnt = pOwner;
+		// World method. Trace till you leave solid, then continue.
+		
+		// Move the trace "cursor" into the surface
+		Vector vecStart = tr.endpos + vecAiming * 1.0f;
+
+		// Now see if this solid is thin enough to penetrate.
+		UTIL_TraceLine( vecStart, vecStart + vecAiming * 24, MASK_SHOT, pIgnoreEnt, COLLISION_GROUP_NONE, &tr );
+
+		if( tr.fractionleftsolid <= 0.0f || tr.fractionleftsolid >= 1.0f )
+		{
+			// Wall can not be penetrated (too thick)
+			return;
+		}
+
+		// This is a bit hacky, overwriting this value, but it lets us re-use code below.
+		tr.endpos = vecStart + vecAiming * (24 * tr.fractionleftsolid);
+	}
+	else
+	{
+		// Ignore whatever was struck.
+		pIgnoreEnt = tr.m_pEnt;
+	}
+
+	//NDebugOverlay::Cross3D( tr.endpos, 8, 255, 255, 255, false, 60.0f );
+
+	// Now just ignore the ent and trace again.
+	UTIL_TraceLine( tr.endpos, tr.endpos + vecAiming * MAX_COORD_INTEGER, MASK_SHOT, pIgnoreEnt, COLLISION_GROUP_NONE, &tr );
+
+	if( tr.m_pEnt != NULL )
+	{
+		NDebugOverlay::Line( tr.startpos, tr.endpos, 255, 0, 255, false, 0.1f );
+
+		if( tr.m_pEnt->MyNPCPointer() && tr.m_pEnt->IsAlive() )
+		{
+			Vector force( 0, 0, 1 );
+			CTakeDamageInfo damageInfo( this, pOwner, tr.m_pEnt->GetHealth(), DMG_GENERIC | DMG_DISSOLVE );
+			damageInfo.SetDamageForce( force );
+			damageInfo.SetDamagePosition( tr.endpos );
+			tr.m_pEnt->TakeDamage( damageInfo );
+		}
+	}
+}
+
+
 void CWeaponPortalgun::DoEffectBlast( bool bPortal2, int iPlacedBy, const Vector &ptStart, const Vector &ptFinalPos, const QAngle &qStartAngles, float fDelay )
 {
 	CEffectData	fxData;
@@ -262,7 +363,9 @@ void CWeaponPortalgun::FirePortal1( inputdata_t &inputdata )
 	FirePortal( false );
 	m_iLastFiredPortal = 1;
 
-	CBaseCombatCharacter *pOwner = GetOwner();
+	//CBaseCombatCharacter *pOwner = GetOwner();
+	CBasePlayer *pOwner = ToBasePlayer( GetOwner() );
+	DispatchParticleEffect( "portal_1_charge_glow", PATTACH_POINT_FOLLOW, pOwner->GetViewModel(), "muzzle", true);
 
 	if( pOwner && pOwner->IsPlayer() )
 	{
@@ -279,8 +382,10 @@ void CWeaponPortalgun::FirePortal2( inputdata_t &inputdata )
 	FirePortal( true );
 	m_iLastFiredPortal = 2;
 
-	CBaseCombatCharacter *pOwner = GetOwner();
-
+	//CBaseCombatCharacter *pOwner = GetOwner();
+	CBasePlayer *pOwner = ToBasePlayer( GetOwner() );
+	DispatchParticleEffect( "portal_2_charge_glow", PATTACH_POINT_FOLLOW, pOwner->GetViewModel(), "muzzle", true);
+	
 	if( pOwner && pOwner->IsPlayer() )
 	{
 		WeaponSound( WPN_DOUBLE );
@@ -630,6 +735,7 @@ float CWeaponPortalgun::FirePortal( bool bPortal2, Vector *pVector /*= 0*/, bool
 		pPortal->SetContextThink( &CProp_Portal::DelayedPlacementThink, gpGlobals->curtime + fDelay, s_pDelayedPlacementContext ); 
 		pPortal->m_vDelayedPosition = vFinalPosition;
 		pPortal->m_hPlacedBy = this;
+		FireHitscanBolt();
 	}
 
 	return fPlacementSuccess;

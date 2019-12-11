@@ -91,7 +91,10 @@
 #include "engine/imatchmaking.h"
 #include "cdll_bounded_cvars.h"
 #include "statgather.h"
+#include "fmod_manager.h"
 #include "discord_rpc.h"
+#include "vr_system.h"
+#include "SMPSPlay.h"
 #include <time.h>
 
 #include "mathlib/IceKey.H"
@@ -104,6 +107,8 @@
 #include "tier0/memdbgon.h"
 
 extern IClientMode *GetClientModeNormal();
+
+int smpslist = 1;
 
 // IF YOU ADD AN INTERFACE, EXTERN IT IN THE HEADER FILE.
 IVEngineClient	*engine = NULL;
@@ -237,7 +242,19 @@ void rawrtest_f ( const CCommand &args )
 ConCommand rawrtest( "rawrtest", rawrtest_f , "rawr", 0);
 //rawr encryption end
 
+void smpsplay_f( const CCommand &arg )
+{
+	if ( arg.ArgC() < 1 )
+	{
+		Msg("Usage: smpsplay <musicid>\n");
+		return;
+	}
+	int musicid = atoi( arg[ 1 ] );
+	SMPS_LoadAndPlaySong(musicid);
+    Msg("Playing SMPS!\n");
+}
 
+ConCommand smpsplay( "smpsplay", smpsplay_f, "Plays a SMPS id.", FCVAR_CHEAT );
 
 class IMoveHelper;
 
@@ -251,6 +268,11 @@ const ConVar *maxplayers;
 static ConVar s_CV_ShowParticleCounts("showparticlecounts", "0", 0, "Display number of particles drawn per frame");
 static ConVar s_cl_team("cl_team", "default", FCVAR_USERINFO|FCVAR_ARCHIVE, "Default team when joining a game");
 static ConVar s_cl_class("cl_class", "default", FCVAR_USERINFO|FCVAR_ARCHIVE, "Default class when joining a game");
+
+ConVar vr_enable( "vr_enable", "0", FCVAR_ARCHIVE );
+ConVar vr_verticaloffset( "vr_verticaloffset", "0", FCVAR_ARCHIVE, "VR Vertical Offset" );	
+ConVar vr_horizontaloffset( "vr_horizontaloffset", "0", FCVAR_ARCHIVE, "VR Horizontal Offset" );	
+
 static ConVar cl_discord_appid("cl_discord_appid", "552512235390369793", FCVAR_DEVELOPMENTONLY | FCVAR_CHEAT);
 static int64_t startTimestamp = time(0);
 
@@ -938,6 +960,11 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 		return false;
 
 	g_pClientMode->Enable();
+	
+	// FMOD - Start 'er up!
+	//DevMsg("Init Fmod!");
+	FMODManager()->InitFMOD();
+	//DevMsg("Init Fmod Done!");
 
 	if ( !view )
 	{
@@ -987,7 +1014,7 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 	handlers.joinGame = HandleDiscordJoin;
 	handlers.spectateGame = HandleDiscordSpectate;
 	handlers.joinRequest = HandleDiscordJoinRequest;
-
+	
 	char appid[255];
 	sprintf(appid, "%d", engine->GetAppID());
 	Discord_Initialize(cl_discord_appid.GetString(), &handlers, 1, appid);
@@ -1002,6 +1029,68 @@ int CHLClient::Init( CreateInterfaceFn appSystemFactory, CreateInterfaceFn physi
 		discordPresence.startTimestamp = startTimestamp;
 		discordPresence.largeImageKey = "in-menu";
 		Discord_UpdatePresence(&discordPresence);
+	}
+	
+	SMPS_InitializeDriver();
+	
+	if(vr_enable.GetInt() == 0){
+		return true;
+	}
+	
+	// Init OpenVR
+	vr::HmdError error = vr::VRInitError_None;
+
+    g_pSystem = vr::VR_Init(&error, vr::VRApplication_Scene);
+    if (error != vr::VRInitError_None) {
+		DevMsg("VR_Init Failed!");
+    }
+    else if (!vr::VRCompositor()) {
+		DevMsg("VRCompositor failed!");
+    }
+	else {
+		vr_enable.SetValue(1);
+		DevMsg("Initializing VR...\n");
+		vr::HmdMatrix44_t proj = g_pSystem->GetProjectionMatrix(vr::EVREye::Eye_Left, 1, 10);
+		float xscale = proj.m[0][0];
+		float xoffset = proj.m[0][2];
+		float yscale = proj.m[1][1];
+		float yoffset = proj.m[1][2];
+		float tan_px = fabsf((1.0f - xoffset) / xscale);
+		float tan_nx = fabsf((-1.0f - xoffset) / xscale);
+		float tan_py = fabsf((1.0f - yoffset) / yscale);
+		float tan_ny = fabsf((-1.0f - yoffset) / yscale);
+		float w = tan_px + tan_nx;
+		float h = tan_py + tan_ny;
+		g_horizontalFOV = atan(w / 2.0f) * 180 / 3.141592654 * 2;
+		g_verticalFOV = atan(h / 2.0f) * 180 / 3.141592654 * 2;
+		g_aspectRatio = w / h;
+		g_calculatedHorizontalOffset = -xoffset;
+		g_calculatedVerticalOffset = -yoffset;
+		g_horizontalOffset = g_calculatedHorizontalOffset;
+		g_verticalOffset = g_calculatedVerticalOffset;
+		
+		DevMsg("Initializing View Parameters...\n");
+		uint32_t recommendedWidth = 0;
+		uint32_t recommendedHeight = 0;
+		g_pSystem->GetRecommendedRenderTargetSize(&recommendedWidth, &recommendedHeight);
+		
+		vr::HmdMatrix34_t eyeToHeadLeft = g_pSystem->GetEyeToHeadTransform(vr::Eye_Left);
+		vr::HmdMatrix34_t eyeToHeadRight = g_pSystem->GetEyeToHeadTransform(vr::Eye_Right);
+		Vector eyeToHeadTransformPos;
+		eyeToHeadTransformPos.x = eyeToHeadLeft.m[0][3];
+		eyeToHeadTransformPos.y = eyeToHeadLeft.m[1][3];
+		eyeToHeadTransformPos.z = eyeToHeadLeft.m[2][3];
+		
+		eyeToHeadTransformPos.x = eyeToHeadRight.m[0][3];
+		eyeToHeadTransformPos.y = eyeToHeadRight.m[1][3];
+		eyeToHeadTransformPos.z = eyeToHeadRight.m[2][3];
+		
+		DevMsg("Initializing Console Variables...\n");
+		
+		vr_horizontaloffset.SetValue( g_horizontalOffset );
+		vr_verticaloffset.SetValue( g_verticalOffset );
+		
+		DevMsg("VR System Initialized!\n");
 	}
 	
 	return true;
@@ -1034,6 +1123,11 @@ void CHLClient::Shutdown( void )
 	g_pClientMode->Disable();
 	g_pClientMode->Shutdown();
 
+	// FMOD - Shut us down
+	DevMsg("Exit Fmod!");
+	FMODManager()->ExitFMOD();
+	//DevMsg("Exit Fmod Done!");
+	
 	input->Shutdown_All();
 	C_BaseTempEntity::ClearDynamicTempEnts();
 	TermSmokeFogOverlay();
@@ -1272,6 +1366,7 @@ void CHLClient::DecodeUserCmdFromBuffer( bf_read& buf, int slot )
 void CHLClient::View_Render( vrect_t *rect )
 {
 	VPROF( "View_Render" );
+	FMODManager()->FadeThink();
 
 	// UNDONE: This gets hit at startup sometimes, investigate - will cause NaNs in calcs inside Render()
 	if ( rect->width == 0 || rect->height == 0 )
@@ -1428,6 +1523,16 @@ void CHLClient::LevelInitPreEntity( char const* pMapName )
 	g_RagdollLVManager.SetLowViolence( pMapName );
 
 	gHUD.LevelInit();
+	//DevMsg("Transition Fmod!");
+	//FMODManager()->TransitionAmbientSounds( "levelstart.mp3");
+	FMODManager()->StopAmbientSound( true );
+	//DevMsg("Transition Fmod Done!");
+	smpslist = smpslist + 1;
+	if (smpslist > 191)
+	{
+		smpslist = 1;
+	}
+	//SMPS_LoadAndPlaySong(smpslist);
 }
 
 
@@ -1500,6 +1605,13 @@ void CHLClient::LevelShutdown( void )
 	StopAllRumbleEffects();
 
 	gHUD.LevelShutdown();
+	
+	// S:O - Stop all FMOD sounds when exiting to the main menu
+	//DevMsg("Stop Ambient Fmod!");
+	FMODManager()->StopAmbientSound( false );
+	//DevMsg("Stop Ambient Fmod Done!");
+	SMPS_FadeOutSong();
+	
 	// Discord RPC
 	if (!g_bTextMode)
 	{

@@ -15,6 +15,9 @@
 #include "ivp_controller_buoyancy.hxx"
 #include "ivp_liquid_surface_descript.hxx"
 
+//eae galera, hj vamo fazer o tutorial de como caga com a valve em 3 segundo, primeiro tu rouba o half life 3 aq oh
+
+
 // NOTE: This is auto-deleted by the phantom controller
 class CBuoyancyAttacher : public IVP_Attacher_To_Cores_Buoyancy
 {

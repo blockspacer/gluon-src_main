@@ -289,7 +289,7 @@ void CWeaponGaussGun::ChargedFire( void )
 	
 	//FIX FIRE ROTATION (using ball for now)
 	//DispatchParticleEffect( "tau_charge_fire", PATTACH_POINT_FOLLOW, pOwner->GetViewModel(), "fire01", true);
-	DispatchParticleEffect( "muzzle_glow_mp5", PATTACH_POINT_FOLLOW, pOwner->GetViewModel(), "fire01", true);
+	//DispatchParticleEffect( "muzzle_glow_mp5", PATTACH_POINT_FOLLOW, pOwner->GetViewModel(), "fire01", true);
 	
 	//Play shock sounds
 	WeaponSound( SPECIAL2 );
@@ -470,7 +470,7 @@ void CWeaponGaussGun::PrimaryAttack( void )
 	
 	//FIX FIRE ROTATION (using ball for now)
 	//DispatchParticleEffect( "tau_fire", PATTACH_POINT_FOLLOW, pOwner->GetViewModel(), "fire01", true);
-	DispatchParticleEffect( "muzzle_glow_mp5", PATTACH_POINT_FOLLOW, pOwner->GetViewModel(), "fire01", true);
+	//DispatchParticleEffect( "muzzle_glow_mp5", PATTACH_POINT_FOLLOW, pOwner->GetViewModel(), "fire01", true);
 	
 	WeaponSound( SINGLE );
 	//WeaponSound( SPECIAL2 );
@@ -573,7 +573,7 @@ void CWeaponGaussGun::SecondaryAttack( void )
 	if ( m_bCharging == false )
 	{
 		//Start looping animation
-		SendWeaponAnim( ACT_GAUSS_SPINCYCLE );
+		SendWeaponAnim( ACT_VM_PULLBACK );
 		
 		//Start looping sound
 		if ( m_sndCharge == NULL )

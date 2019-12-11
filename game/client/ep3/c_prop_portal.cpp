@@ -741,7 +741,7 @@ void C_Prop_Portal::OnDataChanged( DataUpdateType_t updateType )
 					FlashlightState_t state;
 					{
 						state.m_NearZ = 4.0f;
-						state.m_FarZ = 500.0f;
+						state.m_FarZ = 400.0f;
 						state.m_nSpotlightTextureFrame = 0;
 						state.m_pSpotlightTexture = materials->FindTexture( "effects/softlight001", TEXTURE_GROUP_OTHER, false );
 						state.m_fConstantAtten = 0.0f;

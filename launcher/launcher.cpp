@@ -348,7 +348,7 @@ void CLogAllFiles::Init()
 
 	// game directory has not been established yet, must derive ourselves
 	char path[MAX_PATH];
-	Q_snprintf( path, sizeof(path), "%s/%s", GetBaseDirectory(), CommandLine()->ParmValue( "-game", "hl2" ) );
+	Q_snprintf( path, sizeof(path), "%s/%s", GetBaseDirectory(), CommandLine()->ParmValue( "-game", DEFAULT_HL2_GAMEDIR ) );
 	Q_FixSlashes( path );
 	Q_strlower( path );
 	m_sFullGamePath = path;
@@ -735,7 +735,7 @@ bool CSourceAppSystemGroup::PreInit()
 	if ( IsPC() )
 	{
 		// This will get called multiple times due to being here, but only the first one will do anything
-		reslistgenerator->Init( GetBaseDirectory(), CommandLine()->ParmValue( "-game", "hl2" ) );
+		reslistgenerator->Init( GetBaseDirectory(), CommandLine()->ParmValue( "-game", DEFAULT_HL2_GAMEDIR ) );
 
 		// This will also get called each time, but will actually fix up the command line as needed
 		reslistgenerator->SetupCommandLine();

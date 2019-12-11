@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="pcbuild">
+</Property><Property Name="Solution File" Value="D:\gluon_code\src_main\utils\python\python27\PCbuild\pcbuild.sln">
+</Property><Property Name="Date" Value="sábado, 19 de outubro de 2019">
+</Property><Property Name="Time" Value="13:40">
+</Property></Properties><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\python.vcxproj" Source="python" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="python" Source="python.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="python" Source="python.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\pythoncore.vcxproj" Source="pythoncore" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="pythoncore" Source="pythoncore.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="pythoncore" Source="pythoncore.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\pythonw.vcxproj" Source="pythonw" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="pythonw" Source="pythonw.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="pythonw" Source="pythonw.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\w9xpopen.vcxproj" Source="w9xpopen" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="w9xpopen" Source="w9xpopen.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="w9xpopen" Source="w9xpopen.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\winsound.vcxproj" Source="winsound" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="winsound" Source="winsound.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="winsound" Source="winsound.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\_bsddb.vcxproj" Source="_bsddb" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="_bsddb" Source="_bsddb.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="_bsddb" Source="_bsddb.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\_ctypes.vcxproj" Source="_ctypes" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="_ctypes" Source="_ctypes.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="_ctypes" Source="_ctypes.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\_ctypes_test.vcxproj" Source="_ctypes_test" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="_ctypes_test" Source="_ctypes_test.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="_ctypes_test" Source="_ctypes_test.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\_elementtree.vcxproj" Source="_elementtree" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="_elementtree" Source="_elementtree.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="_elementtree" Source="_elementtree.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\_msi.vcxproj" Source="_msi" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="_msi" Source="_msi.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="_msi" Source="_msi.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\_socket.vcxproj" Source="_socket" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="_socket" Source="_socket.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="_socket" Source="_socket.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\_sqlite3.vcxproj" Source="_sqlite3" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="_sqlite3" Source="_sqlite3.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="_sqlite3" Source="_sqlite3.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\_ssl.vcxproj" Source="_ssl" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="_ssl" Source="_ssl.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="_ssl" Source="_ssl.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\_testcapi.vcxproj" Source="_testcapi" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="_testcapi" Source="_testcapi.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="_testcapi" Source="_testcapi.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\_tkinter.vcxproj" Source="_tkinter" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="_tkinter" Source="_tkinter.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="_tkinter" Source="_tkinter.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\bz2.vcxproj" Source="bz2" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="bz2" Source="bz2.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="bz2" Source="bz2.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\select.vcxproj" Source="select" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="select" Source="select.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="select" Source="select.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\unicodedata.vcxproj" Source="unicodedata" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="unicodedata" Source="unicodedata.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="unicodedata" Source="unicodedata.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\pyexpat.vcxproj" Source="pyexpat" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="pyexpat" Source="pyexpat.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="pyexpat" Source="pyexpat.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PC\bdist_wininst\bdist_wininst.vcxproj" Source="bdist_wininst" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="bdist_wininst" Source="..\PC\bdist_wininst\bdist_wininst.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="bdist_wininst" Source="..\PC\bdist_wininst\bdist_wininst.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\_hashlib.vcxproj" Source="_hashlib" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="_hashlib" Source="_hashlib.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="_hashlib" Source="_hashlib.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\sqlite3.vcxproj" Source="sqlite3" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="sqlite3" Source="sqlite3.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="sqlite3" Source="sqlite3.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\_multiprocessing.vcxproj" Source="_multiprocessing" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="_multiprocessing" Source="_multiprocessing.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="_multiprocessing" Source="_multiprocessing.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\tcl.vcxproj" Source="tcl" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="tcl" Source="tcl.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="tcl" Source="tcl.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\tix.vcxproj" Source="tix" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="tix" Source="tix.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="tix" Source="tix.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\tk.vcxproj" Source="tk" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="tk" Source="tk.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="tk" Source="tk.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\libeay.vcxproj" Source="libeay" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="libeay" Source="libeay.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="libeay" Source="libeay.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\ssleay.vcxproj" Source="ssleay" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="ssleay" Source="ssleay.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="ssleay" Source="ssleay.vcxproj" Description="Not Converted">
+</Event><Event ErrorLevel="0" Project="" Source="pcbuild.sln" Description="The solution file does not require conversion.">
+</Event><Event ErrorLevel="3" Project="" Source="pcbuild.sln" Description="No Conversion Required">
+</Event></UpgradeLog>

@@ -425,7 +425,7 @@ static soundfade_t soundfade;  // Client sound fading singleton object
 
 // 0)headphones 2)stereo speakers 4)quad 5)5point1 
 // autodetected from windows settings
-ConVar snd_surround( "snd_surround_speakers", "-1" );
+ConVar snd_surround( "snd_surround_speakers", "-1", FCVAR_ARCHIVE, "0) Headphones. 2) Stereo speakers. 4) Quad speakers. 5) 5.1 " );
 ConVar snd_legacy_surround( "snd_legacy_surround", "0", FCVAR_ARCHIVE );
 ConVar snd_noextraupdate( "snd_noextraupdate", "0" );
 ConVar snd_show( "snd_show", "0", 0, "Show sounds info" );

@@ -48,8 +48,8 @@ $Configuration
 {
 	$Compiler
 	{
-		$AdditionalIncludeDirectories	"$BASE;.\;$SRCDIR\game\shared;$SRCDIR\utils\common"
-		$PreprocessorDefinitions		"$BASE;GAME_DLL;VECTOR;PROTECTED_THINGS_ENABLE;fopen=dont_use_fopen;sprintf=use_Q_snprintf_instead_of_sprintf;strncpy=use_Q_strncpy_instead;_snprintf=use_Q_snprintf_instead"
+		$AdditionalIncludeDirectories	"$BASE;.\;$SRCDIR\game\shared;$SRCDIR\utils\common;$SRCDIR\public\python"
+		$PreprocessorDefinitions		"$BASE;GAME_DLL;VECTOR;PROTECTED_THINGS_ENABLE;Py_NO_ENABLE_SHARED;BOOST_PYTHON_STATIC_LIB;BOOST_PYTHON_SOURCE;BOOST_PYTHON_NO_LIB;fopen=dont_use_fopen;sprintf=use_Q_snprintf_instead_of_sprintf;strncpy=use_Q_strncpy_instead;_snprintf=use_Q_snprintf_instead"
 		$Create/UsePrecompiledHeader	"Use Precompiled Header (/Yu)"
 		$Create/UsePCHThroughFile		"cbase.h"
 	}
@@ -651,6 +651,11 @@ $Project
 		$File	"world.cpp"
 		$File	"world.h"
 		$File	"$SRCDIR\game\shared\mp_shareddefs.cpp"
+		
+		$File	"py\ge_pymanager.cpp"
+		$File	"py\ge_pymanager.h"
+		$File	"py\ge_pymodules.cpp"
+		
 
 		// Not using precompiled header cbase.h
 
@@ -998,6 +1003,9 @@ $Project
 		$File	"$SRCDIR\lib\public\particles.lib"
 		$File	"$SRCDIR\lib\public\tier2.lib"
 		$File	"$SRCDIR\lib\public\tier3.lib"
+		
+		$File	"$SRCDIR\lib\python\boost_pythoncore.lib"
+		$File	"$SRCDIR\lib\python\pythoncore.lib"
 	}
 
 	$Folder	"Link Libraries" [$X360]

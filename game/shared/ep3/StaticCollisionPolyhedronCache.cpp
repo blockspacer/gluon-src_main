@@ -5,6 +5,7 @@
 // $NoKeywords: $
 //=====================================================================================//
 
+
 #include "cbase.h"
 #include "StaticCollisionPolyhedronCache.h"
 #include "engine/IEngineTrace.h"
@@ -121,15 +122,16 @@ void CStaticCollisionPolyhedronCache::Clear( void )
 }
 
 void CStaticCollisionPolyhedronCache::Update( void )
-{
+{	
+	DevMsg("[!] Init Update");
 	Clear();
 
 	//There's no efficient way to know exactly how much memory we'll need to cache off all these polyhedrons.
 	//So we're going to allocated temporary workspaces as we need them and consolidate into one allocation at the end.
-	const size_t workSpaceSize = 1024 * 1024; //1MB. Fairly arbitrary size for a workspace. Brushes usually use 1-3MB in the end. Static props usually use about half as much as brushes.
+	const size_t workSpaceSize = (1024 * 1024) * 4; // 4MB [OLD(1MB. Fairly arbitrary size for a workspace. Brushes usually use 1-3MB in the end. Static props usually use about half as much as brushes.)]
 
-	uint8 *workSpaceAllocations[256];
-	size_t usedSpaceInWorkspace[256];
+	uint8 *workSpaceAllocations[1024];
+	size_t usedSpaceInWorkspace[1024];
 	unsigned int workSpacesAllocated = 0;
 	uint8 *pCurrentWorkSpace = new uint8 [workSpaceSize];
 	size_t roomLeftInWorkSpace = workSpaceSize;
@@ -137,18 +139,23 @@ void CStaticCollisionPolyhedronCache::Update( void )
 	usedSpaceInWorkspace[workSpacesAllocated] = 0;
 	++workSpacesAllocated;
 	
-
+	DevMsg("[!] Brushes");
 	//brushes
 	{
+		DevMsg("a1");
 		int iBrush = 0;
 		CUtlVector<Vector4D> Planes;
 
-		float fStackPlanes[4 * 400]; //400 is a crapload of planes in my opinion
+		float fStackPlanes[4 * 800]; //400 is a crapload of planes in my opinion
 
 		while( enginetrace->GetBrushInfo( iBrush, &Planes, NULL ) )
 		{
+			DevMsg("a2");
 			int iPlaneCount = Planes.Count();
 			AssertMsg( iPlaneCount != 0, "A brush with no planes???????" );
+			if(iPlaneCount != 0){
+				DevMsg("no plane brush");
+			}
 
 			const Vector4D *pReturnedPlanes = Planes.Base();
 
@@ -156,31 +163,37 @@ void CStaticCollisionPolyhedronCache::Update( void )
 
 			if( iPlaneCount > 400 )
 			{
+				DevMsg("a3");
 				// o_O, we'll have to get more memory to transform this brush
 				float *pNonstackPlanes = new float [4 * iPlaneCount];
 
 				for( int i = 0; i != iPlaneCount; ++i )
 				{
+					DevMsg("a4");
 					pNonstackPlanes[(i * 4) + 0] = pReturnedPlanes[i].x;
 					pNonstackPlanes[(i * 4) + 1] = pReturnedPlanes[i].y;
 					pNonstackPlanes[(i * 4) + 2] = pReturnedPlanes[i].z;
 					pNonstackPlanes[(i * 4) + 3] = pReturnedPlanes[i].w;
 				}
 
+				DevMsg("a5");
 				pTempPolyhedron = GeneratePolyhedronFromPlanes( pNonstackPlanes, iPlaneCount, 0.01f, true );
 
+				DevMsg("a6");
 				delete []pNonstackPlanes;
 			}
 			else
 			{
 				for( int i = 0; i != iPlaneCount; ++i )
 				{
+					DevMsg("a7");
 					fStackPlanes[(i * 4) + 0] = pReturnedPlanes[i].x;
 					fStackPlanes[(i * 4) + 1] = pReturnedPlanes[i].y;
 					fStackPlanes[(i * 4) + 2] = pReturnedPlanes[i].z;
 					fStackPlanes[(i * 4) + 3] = pReturnedPlanes[i].w;
 				}
-
+				
+				DevMsg("a8");
 				pTempPolyhedron = GeneratePolyhedronFromPlanes( fStackPlanes, iPlaneCount, 0.01f, true );
 			}
 
@@ -205,6 +218,7 @@ void CStaticCollisionPolyhedronCache::Update( void )
 					++workSpacesAllocated;
 				}
 
+				DevMsg("a9");
 				CPolyhedron *pWorkSpacePolyhedron = CPolyhedron_LumpedMemory::AllocateAt( pCurrentWorkSpace, 
 																							pTempPolyhedron->iVertexCount,
 																							pTempPolyhedron->iLineCount,
@@ -235,6 +249,7 @@ void CStaticCollisionPolyhedronCache::Update( void )
 		
 		if( usedSpaceInWorkspace[0] != 0 ) //At least a little bit of memory was used.
 		{
+			DevMsg("a10");
 			//consolidate workspaces into a single memory chunk
 			size_t totalMemoryNeeded = 0;
 			for( unsigned int i = 0; i != workSpacesAllocated; ++i )
@@ -283,19 +298,24 @@ void CStaticCollisionPolyhedronCache::Update( void )
 	usedSpaceInWorkspace[0] = 0;
 	roomLeftInWorkSpace = workSpaceSize;
 
+	
+	DevMsg("[!] Static Props");
 	//static props
 	{
+		DevMsg("b1");
 		CUtlVector<ICollideable *> StaticPropCollideables;
 		staticpropmgr->GetAllStaticProps( &StaticPropCollideables );
 
 		if( StaticPropCollideables.Count() != 0 )
 		{
+			DevMsg("b2");
 			ICollideable **pCollideables = StaticPropCollideables.Base();
 			ICollideable **pStop = pCollideables + StaticPropCollideables.Count();
 
 			int iStaticPropIndex = 0;
 			do
 			{
+				DevMsg("b3");
 				ICollideable *pProp = *pCollideables;
 				vcollide_t *pCollide = modelinfo->GetVCollide( pProp->GetCollisionModel() );
 				StaticPropPolyhedronCacheInfo_t cacheInfo;
@@ -312,9 +332,11 @@ void CStaticCollisionPolyhedronCache::Update( void )
 
 						for( int j = 0; j != iConvexes; ++j )
 						{
+							DevMsg("b4");
 							CPolyhedron *pTempPolyhedron = physcollision->PolyhedronFromConvex( ConvexesArray[j], true );
 							if( pTempPolyhedron )
 							{
+								DevMsg("b5");
 								for( int iPointCounter = 0; iPointCounter != pTempPolyhedron->iVertexCount; ++iPointCounter )
 									pTempPolyhedron->pVertices[iPointCounter] = matToWorldPosition * pTempPolyhedron->pVertices[iPointCounter];
 
@@ -360,12 +382,13 @@ void CStaticCollisionPolyhedronCache::Update( void )
 
 								pCurrentWorkSpace += memRequired;
 								roomLeftInWorkSpace -= memRequired;
-
+								DevMsg("b6");
 								memcpy( pWorkSpacePolyhedron->pVertices, pTempPolyhedron->pVertices, pTempPolyhedron->iVertexCount * sizeof( Vector ) );
 								memcpy( pWorkSpacePolyhedron->pLines, pTempPolyhedron->pLines, pTempPolyhedron->iLineCount * sizeof( Polyhedron_IndexedLine_t ) );
 								memcpy( pWorkSpacePolyhedron->pIndices, pTempPolyhedron->pIndices, pTempPolyhedron->iIndexCount * sizeof( Polyhedron_IndexedLineReference_t ) );
 								memcpy( pWorkSpacePolyhedron->pPolygons, pTempPolyhedron->pPolygons, pTempPolyhedron->iPolygonCount * sizeof( Polyhedron_IndexedPolygon_t ) );
-
+								
+								DevMsg("b7");
 								m_StaticPropPolyhedrons.AddToTail( pWorkSpacePolyhedron );
 
 #ifdef _DEBUG
@@ -376,7 +399,7 @@ void CStaticCollisionPolyhedronCache::Update( void )
 									physcollision->ConvexFree( pConvex );
 								}
 #endif
-
+								DevMsg("b8");
 								pTempPolyhedron->Release();
 							}
 						}
@@ -387,6 +410,7 @@ void CStaticCollisionPolyhedronCache::Update( void )
 					Assert( staticpropmgr->GetStaticPropByIndex( iStaticPropIndex ) == pProp );
 					
 					m_CollideableIndicesMap.InsertOrReplace( pProp, cacheInfo );
+					DevMsg("b9");
 				}
 
 				++iStaticPropIndex;
@@ -398,6 +422,7 @@ void CStaticCollisionPolyhedronCache::Update( void )
 
 			if( usedSpaceInWorkspace[0] != 0 ) //At least a little bit of memory was used.
 			{
+				DevMsg("b10");
 				//consolidate workspaces into a single memory chunk
 				size_t totalMemoryNeeded = 0;
 				for( unsigned int i = 0; i != workSpacesAllocated; ++i )
@@ -443,6 +468,7 @@ void CStaticCollisionPolyhedronCache::Update( void )
 
 	for( unsigned int i = 0; i != workSpacesAllocated; ++i )
 	{
+		DevMsg("AATA");
 		delete []workSpaceAllocations[i];
 	}
 }
@@ -477,9 +503,4 @@ int CStaticCollisionPolyhedronCache::GetStaticPropPolyhedrons( ICollideable *pSt
 
 	return iOutputArraySize;
 }
-
-
-
-
-
 

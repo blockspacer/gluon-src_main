@@ -38,6 +38,7 @@ typedef unsigned int fixedint;
 #define SOUND_11k			11025		// 11khz sample rate
 #define SOUND_22k			22050		// 22khz sample rate
 #define SOUND_44k			44100		// 44khz sample rate
+#define SOUND_48k			48000		// 48khz sample rate
 #define SOUND_ALL_RATES		1			// mix all sample rates
 
 

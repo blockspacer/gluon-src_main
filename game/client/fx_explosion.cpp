@@ -18,6 +18,9 @@
 #include "fx_quad.h"
 #include "fx_line.h"
 #include "fx_water.h"
+#include "particles_simple.h"
+#include "particles_new.h"
+#include "fx.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -39,6 +42,9 @@ CLIENTEFFECT_REGISTER_END()
 //
 // CExplosionParticle
 //
+
+void TE_DynamicLight( IRecipientFilter& filter, float delay,
+	const Vector* org, int r, int g, int b, int exponent, float radius, float time, float decay, int nLightIndex = LIGHT_INDEX_TE_DYNAMIC );
 
 class CExplosionParticle : public CSimpleEmitter
 {
@@ -170,6 +176,8 @@ float C_BaseExplosionEffect::ScaleForceByDeviation( Vector &deviant, Vector &sou
 //-----------------------------------------------------------------------------
 void C_BaseExplosionEffect::Create( const Vector &position, float force, float scale, int flags )
 {
+	PrecacheParticleSystem( "hl2mmod_explosion_rpg" );
+
 	m_vecOrigin = position;
 	m_fFlags	= flags;
 
@@ -183,15 +191,26 @@ void C_BaseExplosionEffect::Create( const Vector &position, float force, float s
 
 	PlaySound();
 
+	/*
 	if ( scale != 0 )
 	{
 		// UNDONE: Make core size parametric to scale or remove scale?
 		CreateCore();
 	}
-
-	CreateDebris();
-	//FIXME: CreateDynamicLight();
-	CreateMisc();
+	*/
+	
+	
+	CNewParticleEffect* pEffect = new CNewParticleEffect( NULL, "hl2mmod_explosion_rpg" );
+	if( pEffect )
+	{
+		pEffect->SetSortOrigin( m_vecOrigin );
+		pEffect->SetControlPoint( 0, m_vecOrigin );
+		pEffect->SetControlPointOrientation( 0, Vector(0,0,0), Vector(0,0,0), Vector(0,0,0) );
+	}
+	
+	//CreateDebris();
+	CreateDynamicLight();
+	//CreateMisc();
 }
 
 //-----------------------------------------------------------------------------
@@ -563,6 +582,14 @@ void C_BaseExplosionEffect::CreateDebris( void )
 	if ( m_fFlags & TE_EXPLFLAG_NOPARTICLES )
 		return;
 
+	//CNewParticleEffect* pEffect = ParticleProp()->Create( "weapon_glock_muzzleflash", PATTACH_ABSORIGIN );
+	CSmartPtr<CNewParticleEffect> pEffect = CNewParticleEffect::Create( NULL, "weapon_glock_muzzleflash" );
+	if ( pEffect->IsValid() )
+	{
+		pEffect->SetSortOrigin(  m_vecOrigin );
+	}
+	
+	return;
 	//
 	// Sparks
 	//
@@ -697,19 +724,25 @@ void C_BaseExplosionEffect::CreateMisc( void )
 //-----------------------------------------------------------------------------
 void C_BaseExplosionEffect::CreateDynamicLight( void )
 {
-	if ( m_fFlags & TE_EXPLFLAG_NODLIGHTS )
-		return;
+	//if ( m_fFlags & TE_EXPLFLAG_NODLIGHTS )
+	//	return;
 
-	dlight_t *dl = effects->CL_AllocDlight( 0 );
+	//dlight_t *dl = effects->CL_AllocDlight( 0 );
 	
-	VectorCopy (m_vecOrigin, dl->origin);
+	//VectorCopy (m_vecOrigin, megaorigin);
 	
-	dl->decay	= 200;
+	/*
+	dl->decay	= 512.0f;
 	dl->radius	= 255;
-	dl->color.r = 255;
-	dl->color.g = 220;
-	dl->color.b = 128;
+	dl->color.r = 231;
+	dl->color.g = 219;
+	dl->color.b = 14;
 	dl->die		= gpGlobals->curtime + 0.1f;
+	*/
+	
+	CPVSFilter filter(m_vecOrigin);
+	TE_DynamicLight( filter, 0.0, &(m_vecOrigin), 255, 192, 64, 5, 450, 0.1, 768 );
+	
 }
 
 //-----------------------------------------------------------------------------
@@ -1280,6 +1313,7 @@ void C_WaterExplosionEffect::CreateMisc( void )
 		pParticle->m_flRoll			= random->RandomInt( 0, 360 );
 		pParticle->m_flRollDelta	= random->RandomFloat( -4.0f, 4.0f );
 	}
+	
 }
 
 //-----------------------------------------------------------------------------

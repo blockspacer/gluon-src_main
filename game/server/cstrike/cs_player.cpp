@@ -5012,6 +5012,9 @@ bool CCSPlayer::Weapon_CanUse( CBaseCombatWeapon *pBaseWeapon )
 			return false;
 		}
 	}
+	else{
+		return false;
+	}
 
 	return true;
 }

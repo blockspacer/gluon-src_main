@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="launcher_main"
 	ProjectGUID="{E6B3D7DC-E615-4F9E-8E14-E7AFE068E862}"
-	RootNamespace="launcher_main"
 	>
 	<Platforms>
 		<Platform
@@ -26,7 +25,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="if EXIST ..\..\game\hl2.exe for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\game\hl2.exe&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q &quot;$(TargetDir)&quot;$(TargetFileName)&#x0D;&#x0A;set path=..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\devtools\bin\vpc.exe ..\devtools\bin\vpc.exe -crc launcher_main.vpc 21671b6e -crc ..\vpc_scripts\source_xex_x360_base.vpc 41029662 -crc ..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\vpc_scripts\source_xex_x360_debug.vpc 5e804739 -crc ..\vpc_scripts\source_xex_x360_release.vpc 23f5957d&#x0D;&#x0A;"
+				CommandLine="if EXIST ..\..\game\gluon.exe for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\game\gluon.exe&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q &quot;$(TargetDir)&quot;$(TargetFileName)&#x0D;&#x0A;set path=..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\devtools\bin\vpc.exe ..\devtools\bin\vpc.exe -crc launcher_main.vpc d50baacd -crc ..\vpc_scripts\source_xex_x360_base.vpc 41029662 -crc ..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\vpc_scripts\source_xex_x360_debug.vpc 5e804739 -crc ..\vpc_scripts\source_xex_x360_release.vpc 23f5957d&#x0D;&#x0A;"
 				ExcludedFromBuild="false"
 			/>
 			<Tool
@@ -167,7 +166,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="if EXIST ..\..\game\hl2.exe for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\game\hl2.exe&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q &quot;$(TargetDir)&quot;$(TargetFileName)&#x0D;&#x0A;set path=..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\devtools\bin\vpc.exe ..\devtools\bin\vpc.exe -crc launcher_main.vpc 21671b6e -crc ..\vpc_scripts\source_xex_x360_base.vpc 41029662 -crc ..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\vpc_scripts\source_xex_x360_debug.vpc 5e804739 -crc ..\vpc_scripts\source_xex_x360_release.vpc 23f5957d&#x0D;&#x0A;"
+				CommandLine="if EXIST ..\..\game\gluon.exe for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\game\gluon.exe&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q &quot;$(TargetDir)&quot;$(TargetFileName)&#x0D;&#x0A;set path=..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\devtools\bin\vpc.exe ..\devtools\bin\vpc.exe -crc launcher_main.vpc d50baacd -crc ..\vpc_scripts\source_xex_x360_base.vpc 41029662 -crc ..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\vpc_scripts\source_xex_x360_debug.vpc 5e804739 -crc ..\vpc_scripts\source_xex_x360_release.vpc 23f5957d&#x0D;&#x0A;"
 				ExcludedFromBuild="false"
 			/>
 			<Tool

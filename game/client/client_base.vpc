@@ -724,12 +724,16 @@ $Project
 		$File	"weapon_selection.h"
 		$File	"weapons_resource.h"
 		$File	"vgui_video.h"
+		$File	"$SRCDIR\gameui\BasePanel.h"
 		$File	"VAwesomium.cpp"
 		$File	"VAwesomium.h"
 		$File	"INPanel.h"
 		$File	"ngui.cpp"
 		$File	"ngui_handler.h"
 		$File	"ngui_handler.cpp"
+		$File	"fmod_manager.h"
+		$File	"fmod_manager.cpp"
+		$File	"vr_system.h"
 	}
 
 	$Folder	"Public Header Files"
@@ -986,6 +990,18 @@ $Project
 		$File	"$SRCDIR\public\Awesomium\WebURL.h"
 		$File	"$SRCDIR\public\Awesomium\WebView.h"
 		$File	"$SRCDIR\public\Awesomium\WebViewListener.h"
+		
+		$File	"$SRCDIR\public\fmod\fmod.h"
+		$File	"$SRCDIR\public\fmod\fmod.hpp"
+		$File	"$SRCDIR\public\fmod\fmod_codec.h"
+		$File	"$SRCDIR\public\fmod\fmod_dsp.h"
+		$File	"$SRCDIR\public\fmod\fmod_errors.h"
+		$File	"$SRCDIR\public\fmod\fmod_memoryinfo.h"
+		$File	"$SRCDIR\public\fmod\fmod_output.h"
+		
+		$File	"$SRCDIR\public\openvr.h"
+		
+		$File	"$SRCDIR\public\SMPSPlay.h"
 	}
 
 	$Folder	"Game Shared Header Files"
@@ -1136,6 +1152,9 @@ $Project
 		$File	"$SRCDIR\lib\public\tier3.lib"
 		$File	"$SRCDIR\lib\public\vgui_controls.lib"
 		$File	"$SRCDIR\lib\public\awesomium.lib"
+		$File	"$SRCDIR\lib\public\fmodex_vc.lib"
+		$File	"$SRCDIR\lib\public\openvr_api.lib"
+		$File	"$SRCDIR\lib\public\SMPSPlay.lib"
 	}
 
 	$Folder	"Link Libraries" [$X360]

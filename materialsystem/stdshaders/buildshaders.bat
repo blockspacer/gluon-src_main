@@ -152,12 +152,12 @@ if exist vcslist.txt del /f /q vcslist.txt
 REM ****************
 REM Revert any targets (vcs or inc) that are opened for integrate.
 REM ****************
-rem perl "%SrcDirBase%\devtools\bin\p4revertshadertargets.pl" %x360_args% -source "%SrcDirBase%" %inputbase%
+rem C:\Perl64\bin\perl "%SrcDirBase%\devtools\bin\p4revertshadertargets.pl" %x360_args% -source "%SrcDirBase%" %inputbase%
 
 REM ****************
 REM Generate a makefile for the shader project
 REM ****************
-perl "%SrcDirBase%\devtools\bin\updateshaders.pl" %x360_args% -source "%SrcDirBase%" %inputbase%
+C:\Perl64\bin\perl "%SrcDirBase%\devtools\bin\updateshaders.pl" %x360_args% -source "%SrcDirBase%" %inputbase%
 
 
 REM ****************
@@ -172,7 +172,7 @@ REM Copy the inc files to their target
 REM ****************
 if exist "inclist.txt" (
 	echo Publishing shader inc files to target...
-	perl %SrcDirBase%\devtools\bin\copyshaderincfiles.pl inclist.txt %x360_args%
+	C:\Perl64\bin\perl %SrcDirBase%\devtools\bin\copyshaderincfiles.pl inclist.txt %x360_args%
 )
 
 REM ****************
@@ -209,7 +209,7 @@ echo %SrcDirBase%\..\game\bin\tier0.dll >> filestocopy.txt
 REM ****************
 REM Cull duplicate entries in work/build list
 REM ****************
-if exist filestocopy.txt type filestocopy.txt | perl "%SrcDirBase%\devtools\bin\uniqifylist.pl" > uniquefilestocopy.txt
+if exist filestocopy.txt type filestocopy.txt | C:\Perl64\bin\perl "%SrcDirBase%\devtools\bin\uniqifylist.pl" > uniquefilestocopy.txt
 if exist filelistgen.txt if not "%dynamic_shaders%" == "1" (
     echo Generating action list...
     copy filelistgen.txt filelist.txt >nul
@@ -236,7 +236,7 @@ REM This batch file may have been invoked standalone or slaved (master does fina
 REM ****************
 if not "%dynamic_shaders%" == "1" (
 	if exist makefile.%inputbase%.copy echo Publishing shaders to target...
-	if exist makefile.%inputbase%.copy perl %SrcDirBase%\devtools\bin\copyshaders.pl makefile.%inputbase%.copy %x360_args%
+	if exist makefile.%inputbase%.copy C:\Perl64\bin\perl %SrcDirBase%\devtools\bin\copyshaders.pl makefile.%inputbase%.copy %x360_args%
 )
 
 REM ****************

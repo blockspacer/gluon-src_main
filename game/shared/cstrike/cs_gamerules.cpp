@@ -16,6 +16,7 @@
 #ifdef CLIENT_DLL
 
 	#include "networkstringtable_clientdll.h"
+	#include "fmod_manager.h"
 
 #else
 	

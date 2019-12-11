@@ -894,7 +894,6 @@ const ConCommandBase *Cmd_ExecuteCommand( const CCommand &command, cmd_source_t 
 	return NULL;
 }
 
-
 //-----------------------------------------------------------------------------
 // Sends the entire command line over to the server
 //-----------------------------------------------------------------------------
@@ -923,4 +922,11 @@ void Cmd_ForwardToServer( const CCommand &args, bool bReliable )
 	
 	cl.SendStringCmd( str );
 #endif
+}
+
+
+//-----------------------------------------------------------------------------
+CON_COMMAND( gluon_credits, "Gluon Engine" )
+{
+	Msg("Made by BugadinhoGamers with help from Juest!\nThe Gluon Engine is a alot of tweaks 'glued' together and as such some code isn't original, all rights go to their respective creators.\n");
 }

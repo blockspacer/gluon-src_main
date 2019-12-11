@@ -48,6 +48,7 @@
 #include "keyvalues.h"
 #include "renderparm.h"
 #include "con_nprint.h"
+#include "openvr.h"
 
 #ifdef PORTAL
 //#include "C_Portal_Player.h"
@@ -108,7 +109,6 @@ ConVar r_DrawDetailProps( "r_DrawDetailProps", "1", FCVAR_NONE, "0=Off, 1=Normal
 ConVar r_worldlistcache( "r_worldlistcache", "1" );
 //ssao ohhh mannnn!
 ConVar cr_ssao_enable( "cr_ssao_enable", "1", FCVAR_ARCHIVE );
-ConVar vr_enable( "vr_enable", "0", FCVAR_ARCHIVE );
 
 //-----------------------------------------------------------------------------
 // Convars related to fog color
@@ -2041,7 +2041,34 @@ void CViewRender::RenderView( const CViewSetup &view, int nClearFlags, int whatT
 		render->VGui_Paint( PAINT_INGAMEPANELS );
 
 		AllowCurrentViewAccess( false );
+		ConVar * vre = cvar->FindVar( "vr_enable" );
+		if(vre->GetInt() == 1){
+			ConVar * vrh = cvar->FindVar( "vr_horizontaloffset" );
+			ConVar * vrv = cvar->FindVar( "vr_verticaloffset" );
+		
+			ITexture *frameBufferText = GetFullFrameFrameBufferTexture(1);
+		
+			D3DFORMAT fbD3D = ( ImageLoader::ImageFormatToD3DFormat( frameBufferText->GetImageFormat() ) );
+		
+			vr::Texture_t vrTexture = { &fbD3D, vr::TextureType_DirectX, vr::ColorSpace_Auto };
+			vr::VRTextureBounds_t textureBounds;
 
+			//submit Left eye
+			textureBounds.uMin = 0.0f - vrh->GetFloat() * 0.25f;
+			textureBounds.uMax = 0.5f - vrh->GetFloat() * 0.25f;
+			textureBounds.vMin = 0.0f + vrv->GetFloat() * 0.5f;
+			textureBounds.vMax = 1.0f + vrv->GetFloat() * 0.5f;
+	
+			vr::VRCompositor()->Submit(vr::EVREye::Eye_Left, &vrTexture, &textureBounds);
+		
+			//submit Right eye
+			textureBounds.uMin = 0.5f + vrh->GetFloat() * 0.25f;
+			textureBounds.uMax = 1.0f + vrh->GetFloat() * 0.25f;
+			textureBounds.vMin = 0.0f + vrv->GetFloat() * 0.5f;
+			textureBounds.vMax = 1.0f + vrv->GetFloat() * 0.5f;
+	
+			vr::VRCompositor()->Submit(vr::EVREye::Eye_Right, &vrTexture, &textureBounds);
+		}
 		VGui_PostRender();
 
 		g_pClientMode->PostRenderVGui();
@@ -2053,11 +2080,6 @@ void CViewRender::RenderView( const CViewSetup &view, int nClearFlags, int whatT
 	CDebugViewRender::Draw2DDebuggingInfo( view );
 
 	Render2DEffectsPostHUD( view );
-	
-	if(vr_enable.GetBool())
-	{
-		DoVR(view);
-	}
 	
 	g_bRenderingView = false;
 

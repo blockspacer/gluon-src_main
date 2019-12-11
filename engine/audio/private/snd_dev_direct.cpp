@@ -1018,7 +1018,7 @@ void CAudioDirectSound::DetectWindowsSpeakerSetup()
 		case DSSPEAKER_MONO:
 		case DSSPEAKER_STEREO:
 		default:
-			snd_surround.SetValue( 2 );
+			snd_surround.SetValue( 7 );
 			break;
 
 		case DSSPEAKER_QUAD:
@@ -1043,6 +1043,7 @@ void CAudioDirectSound::DetectWindowsSpeakerSetup()
 */
 void OnSndSurroundCvarChanged( IConVar *pVar, const char *pOldString, float flOldValue )
 {
+	return; //shit, remove this
 	if (!pDS)
 		return;
 

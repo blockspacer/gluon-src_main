@@ -1131,7 +1131,7 @@ HWND CreateFullscreenWindow( bool bFadeIn )
 	if ( g_hBlackFadingWindow )
 		return g_hBlackFadingWindow;
 
-	static s_bRegistered = false;
+	static bool s_bRegistered = false;
 	if ( !s_bRegistered )
 	{
 		WNDCLASS wc;

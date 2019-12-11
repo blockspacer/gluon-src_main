@@ -3,7 +3,6 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="Server (HL2)"
-	ProjectGUID="{BC4B9D31-3815-4C37-9224-736E27D147C4}"
 	>
 	<Platforms>
 		<Platform
@@ -25,7 +24,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="if EXIST ..\..\..\game\hl2\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\hl2\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q $(TargetDir)$(TargetName)_converted.dll&#x0D;&#x0A;set path=..\..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\..\devtools\bin\vpc.exe ..\..\devtools\bin\vpc.exe -crc server_hl2.vpc c13a3774 -crc ..\..\game\server\server_base.vpc 96ae4596 -crc ..\..\vpc_scripts\source_dll_x360_base.vpc df878f85 -crc ..\..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\..\vpc_scripts\source_dll_x360_debug.vpc b03eba60 -crc ..\..\vpc_scripts\source_dll_x360_release.vpc 0f313f3e&#x0D;&#x0A;"
+				CommandLine="if EXIST ..\..\..\game\hl2\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\hl2\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q $(TargetDir)$(TargetName)_converted.dll&#x0D;&#x0A;set path=..\..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\..\devtools\bin\vpc.exe ..\..\devtools\bin\vpc.exe -crc server_hl2.vpc 2b1a2453 -crc ..\..\game\server\server_base.vpc 4d10a24c -crc ..\..\vpc_scripts\source_dll_x360_base.vpc df878f85 -crc ..\..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\..\vpc_scripts\source_dll_x360_debug.vpc b03eba60 -crc ..\..\vpc_scripts\source_dll_x360_release.vpc 0f313f3e&#x0D;&#x0A;"
 				ExcludedFromBuild="false"
 			/>
 			<Tool
@@ -52,8 +51,8 @@
 				FavorSizeOrSpeed="0"
 				EnableFiberSafeOptimizations="false"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="..\..\common;..\..\public;..\..\public\tier0;..\..\public\tier1;.\;..\..\game\shared;..\..\utils\common;..\..\game\shared\hl2;.\hl2"
-				PreprocessorDefinitions="_X360;_DEBUG;DEBUG;_USRDLL;_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;GAME_DLL;VECTOR;PROTECTED_THINGS_ENABLE;fopen=dont_use_fopen;sprintf=use_Q_snprintf_instead_of_sprintf;strncpy=use_Q_strncpy_instead;_snprintf=use_Q_snprintf_instead;HL2_DLL;USES_SAVERESTORE"
+				AdditionalIncludeDirectories="..\..\common;..\..\public;..\..\public\tier0;..\..\public\tier1;.\;..\..\game\shared;..\..\utils\common;..\..\public\python;..\..\game\shared\hl2;.\hl2"
+				PreprocessorDefinitions="_X360;_DEBUG;DEBUG;_USRDLL;_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;GAME_DLL;VECTOR;PROTECTED_THINGS_ENABLE;Py_NO_ENABLE_SHARED;BOOST_PYTHON_STATIC_LIB;BOOST_PYTHON_SOURCE;BOOST_PYTHON_NO_LIB;fopen=dont_use_fopen;sprintf=use_Q_snprintf_instead_of_sprintf;strncpy=use_Q_strncpy_instead;_snprintf=use_Q_snprintf_instead;HL2_DLL;USES_SAVERESTORE"
 				IgnoreStandardIncludePath="false"
 				GeneratePreprocessedFile="0"
 				KeepComments="false"
@@ -150,6 +149,8 @@
 				ProjectDefaults="..\..\common\hl2orange.xml"
 				TitleID="0x4541080F"
 				ExportByName="false"
+				Privilege_NoODDMapping="false"
+				Privilege_PAL50Incompatible="false"
 			/>
 			<Tool
 				Name="VCBscMakeTool"
@@ -186,7 +187,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="if EXIST ..\..\..\game\hl2\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\hl2\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q $(TargetDir)$(TargetName)_converted.dll&#x0D;&#x0A;set path=..\..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\..\devtools\bin\vpc.exe ..\..\devtools\bin\vpc.exe -crc server_hl2.vpc c13a3774 -crc ..\..\game\server\server_base.vpc 96ae4596 -crc ..\..\vpc_scripts\source_dll_x360_base.vpc df878f85 -crc ..\..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\..\vpc_scripts\source_dll_x360_debug.vpc b03eba60 -crc ..\..\vpc_scripts\source_dll_x360_release.vpc 0f313f3e&#x0D;&#x0A;"
+				CommandLine="if EXIST ..\..\..\game\hl2\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\hl2\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q $(TargetDir)$(TargetName)_converted.dll&#x0D;&#x0A;set path=..\..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\..\devtools\bin\vpc.exe ..\..\devtools\bin\vpc.exe -crc server_hl2.vpc 2b1a2453 -crc ..\..\game\server\server_base.vpc 4d10a24c -crc ..\..\vpc_scripts\source_dll_x360_base.vpc df878f85 -crc ..\..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\..\vpc_scripts\source_dll_x360_debug.vpc b03eba60 -crc ..\..\vpc_scripts\source_dll_x360_release.vpc 0f313f3e&#x0D;&#x0A;"
 				ExcludedFromBuild="false"
 			/>
 			<Tool
@@ -211,8 +212,8 @@
 				InlineFunctionExpansion="2"
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="..\..\common;..\..\public;..\..\public\tier0;..\..\public\tier1;.\;..\..\game\shared;..\..\utils\common;..\..\game\shared\hl2;.\hl2"
-				PreprocessorDefinitions="_X360;NDEBUG;_USRDLL;_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;__VMX128_SUPPORTED;GAME_DLL;VECTOR;PROTECTED_THINGS_ENABLE;fopen=dont_use_fopen;sprintf=use_Q_snprintf_instead_of_sprintf;strncpy=use_Q_strncpy_instead;_snprintf=use_Q_snprintf_instead;HL2_DLL;USES_SAVERESTORE"
+				AdditionalIncludeDirectories="..\..\common;..\..\public;..\..\public\tier0;..\..\public\tier1;.\;..\..\game\shared;..\..\utils\common;..\..\public\python;..\..\game\shared\hl2;.\hl2"
+				PreprocessorDefinitions="_X360;NDEBUG;_USRDLL;_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;__VMX128_SUPPORTED;GAME_DLL;VECTOR;PROTECTED_THINGS_ENABLE;Py_NO_ENABLE_SHARED;BOOST_PYTHON_STATIC_LIB;BOOST_PYTHON_SOURCE;BOOST_PYTHON_NO_LIB;fopen=dont_use_fopen;sprintf=use_Q_snprintf_instead_of_sprintf;strncpy=use_Q_strncpy_instead;_snprintf=use_Q_snprintf_instead;HL2_DLL;USES_SAVERESTORE"
 				KeepComments="false"
 				StringPooling="true"
 				MinimalRebuild="false"
@@ -298,6 +299,8 @@
 				ProjectDefaults="..\..\common\hl2orange.xml"
 				TitleID="0x4541080F"
 				ExportByName="false"
+				Privilege_NoODDMapping="false"
+				Privilege_PAL50Incompatible="false"
 			/>
 			<Tool
 				Name="VCBscMakeTool"
@@ -1427,6 +1430,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\env_global_light.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\env_particlescript.cpp"
 				>
 			</File>
@@ -1804,6 +1811,18 @@
 			</File>
 			<File
 				RelativePath=".\gameweaponmanager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\py\ge_pymanager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\py\ge_pymanager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\py\ge_pymodules.cpp"
 				>
 			</File>
 			<File
@@ -2944,6 +2963,14 @@
 			</File>
 			<File
 				RelativePath="..\shared\singleplay_gamerules.h"
+				>
+			</File>
+			<File
+				RelativePath="..\shared\singleplayer_animstate.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\shared\singleplayer_animstate.h"
 				>
 			</File>
 			<File
@@ -4334,6 +4361,14 @@
 					>
 				</File>
 				<File
+					RelativePath=".\hl2\weapon_glock17.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\hl2\weapon_mp5.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\hl2\weapon_physcannon.cpp"
 					>
 				</File>
@@ -4416,6 +4451,18 @@
 						RelativePath=".\hl2\weapon_flaregun.h"
 						>
 					</File>
+					<File
+						RelativePath=".\hl2\weapon_gauss.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\hl2\weapon_gauss.h"
+						>
+					</File>
+					<File
+						RelativePath=".\hl2\weapon_smg2.cpp"
+						>
+					</File>
 				</Filter>
 			</Filter>
 		</Filter>
@@ -4435,7 +4482,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\lib\public\Dmxloader_360.lib"
+				RelativePath="..\..\lib\public\dmxloader_360.lib"
 				>
 			</File>
 			<File
@@ -4443,7 +4490,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\lib\public\Particles_360.lib"
+				RelativePath="..\..\lib\public\particles_360.lib"
 				>
 			</File>
 			<File
@@ -5336,6 +5383,4 @@
 			</File>
 		</Filter>
 	</Files>
-	<Globals>
-	</Globals>
 </VisualStudioProject>

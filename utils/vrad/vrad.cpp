@@ -237,6 +237,9 @@ void ReadLightFile (char *filename)
 		}
 		else
 		{
+			//ForceTextureShadowsOnModel( NoShadName );
+			
+			
 			char szTexlight[256];
 			Vector value;
 			if ( num_texlights == MAX_TEXLIGHTS )
@@ -284,6 +287,7 @@ void ReadLightFile (char *filename)
 			file_texlights ++;
 			
 			num_texlights = max( num_texlights, j + 1 );
+			
 		}
 	}
 	qprintf ( "[%i texlights parsed from '%s']\n\n", file_texlights, filename);

@@ -1316,7 +1316,7 @@ bool CClientShadowMgr::Init()
 
 	SetShadowBlobbyCutoffArea( 0.005 );
 
-	m_nMaxDepthTextureShadows = 20;	// Nah fam, we need too much lights (198 used in dynamic d1_trainstation_02)
+	m_nMaxDepthTextureShadows = 16;
 
 	bool bLowEnd = ( g_pMaterialSystemHardwareConfig->GetDXSupportLevel() < 80 );
 

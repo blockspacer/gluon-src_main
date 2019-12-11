@@ -41,6 +41,7 @@
 #include "usermessages.h"
 #include "prediction.h"
 #include "datacache/imdlcache.h"
+#include "fmod_manager.h"
 
 class CHudChat;
 
@@ -402,6 +403,7 @@ void ClientModeCSNormal::FireGameEvent( IGameEvent *event )
 		enginesound->StopAllSounds( true );
 
 		Soundscape_OnStopAllSounds();	// Tell the soundscape system.
+		FMODManager()->TransitionAmbientSounds( "levelstart.mp3");
 	}
 
 
@@ -421,10 +423,20 @@ void ClientModeCSNormal::FireGameEvent( IGameEvent *event )
 			{
 				C_BaseEntity::EmitSound( filter, SOUND_FROM_LOCAL_PLAYER, "Event.CTWin");
 			}
+			if(pLocalPlayer->GetTeamNumber() == TEAM_CT){
+				FMODManager()->TransitionAmbientSounds( "round_win.mp3");
+			}else{
+				FMODManager()->TransitionAmbientSounds( "round_lose.mp3");
+			}
 		}
 		else if ( winningTeam == TEAM_TERRORIST )
 		{
 			C_BaseEntity::EmitSound( filter, SOUND_FROM_LOCAL_PLAYER, "Event.TERWin");
+			if(pLocalPlayer->GetTeamNumber() == TEAM_TERRORIST){
+				FMODManager()->TransitionAmbientSounds( "round_win.mp3");
+			}else{
+				FMODManager()->TransitionAmbientSounds( "round_lose.mp3");
+			}
 		}
 		else
 		{
@@ -451,10 +463,20 @@ void ClientModeCSNormal::FireGameEvent( IGameEvent *event )
 			{
 				C_BaseEntity::EmitSound( filter, SOUND_FROM_LOCAL_PLAYER, "Event.CTWin");
 			}
+			if(pLocalPlayer->GetTeamNumber() == TEAM_CT){
+				FMODManager()->TransitionAmbientSounds( "round_win.mp3");
+			}else{
+				FMODManager()->TransitionAmbientSounds( "round_lose.mp3");
+			}
 		}
 		else if ( winningTeam == TEAM_TERRORIST )
 		{
 			C_BaseEntity::EmitSound( filter, SOUND_FROM_LOCAL_PLAYER, "Event.TERWin");
+			if(pLocalPlayer->GetTeamNumber() == TEAM_TERRORIST){
+				FMODManager()->TransitionAmbientSounds( "round_win.mp3");
+			}else{
+				FMODManager()->TransitionAmbientSounds( "round_lose.mp3");
+			}
 		}
 		else
 		{
@@ -541,6 +563,7 @@ void ClientModeCSNormal::FireGameEvent( IGameEvent *event )
 		if ( pPlayer == C_BasePlayer::GetLocalPlayer() )
 		{
 			// we just died, hide any buy panels
+			FMODManager()->TransitionAmbientSounds( "death.mp3");
 			gViewPortInterface->ShowPanel( PANEL_BUY, false );
 			gViewPortInterface->ShowPanel( PANEL_BUY_CT, false );
 			gViewPortInterface->ShowPanel( PANEL_BUY_TER, false );

@@ -140,9 +140,9 @@ $Configuration
 {
 	$Compiler
 	{
-		$AdditionalIncludeDirectories	"$BASE;.\;audio;audio\private;audio\public;$SRCDIR\vgui2\include;$SRCDIR\vgui2\controls"
+		$AdditionalIncludeDirectories	"$BASE;.\;audio;audio\private;audio\public;$SRCDIR\vgui2\include;$SRCDIR\vgui2\controls;$SRCDIR\public\python"
 		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\dx9sdk\include" [$WIN32]
-		$PreprocessorDefinitions		"$BASE;USE_CONVARS;VOICE_OVER_IP;BUMPMAP;__USEA3D;_ADD_EAX_;ENGINE_DLL;PROTECTED_THINGS_ENABLE;fopen=dont_use_fopen"
+		$PreprocessorDefinitions		"$BASE;USE_CONVARS;VOICE_OVER_IP;BUMPMAP;__USEA3D;_ADD_EAX_;ENGINE_DLL;PROTECTED_THINGS_ENABLE;Py_NO_ENABLE_SHARED;BOOST_PYTHON_STATIC_LIB;BOOST_PYTHON_SOURCE;BOOST_PYTHON_NO_LIB;fopen=dont_use_fopen"
 	}
 
 	$Compiler [$WIN32]
@@ -153,7 +153,7 @@ $Configuration
 	$Linker
 	{
 		$AdditionalDependencies			"$BASE dinput8.lib winmm.lib wsock32.lib ws2_32.lib wininet.lib vfw32.lib Rpcrt4.lib" [$WIN32]
-		$AdditionalLibraryDirectories	"$BASE;$SRCDIR\lib\common\vc7;$SRCDIR\dx9sdk\lib" [$WIN32]
+		$AdditionalLibraryDirectories	"$BASE;$SRCDIR\lib\common\vc7;$SRCDIR\dx9sdk\lib;$SRCDIR\lib\python" [$WIN32]
 	}
 }
 
@@ -441,6 +441,7 @@ $Project "engine"
 		$File	"$SRCDIR\public\sentence.cpp"
 		$File	"Session.cpp"
 		$File	"sound_shared.cpp"
+		$File	"$SRCDIR\common\SourceAppInfo.cpp"
 		$File	"spatialpartition.cpp"
 		$File	"StaticPropMgr.cpp"
 		$File	"$SRCDIR\public\studio.cpp"
@@ -483,7 +484,9 @@ $Project "engine"
 		$File	"sys_getmodes.cpp"
 		$File	"vgui_askconnectpanel.cpp"
 		$File	"xboxsystem.cpp"
-		$File	"$SRCDIR\common\SourceAppInfo.cpp"
+		$File	"ge_pymanager.cpp"
+		$File	"ge_pymanager.h"
+		$File	"ge_pymodules.cpp"
 	}
 	
 	$Folder	"Audio"
@@ -1205,6 +1208,9 @@ $Project "engine"
 		$File	"$SRCDIR\DX9SDK\lib\dxguid.lib"
 		$File	"$SRCDIR\lib\public\vgui_controls.lib"
 		$File	"$SRCDIR\lib\common\binkw32.lib"
+		
+		$File	"$SRCDIR\lib\python\boost_pythoncore.lib"
+		$File	"$SRCDIR\lib\python\pythoncore.lib"
 	}
 
 	$Folder	"Link libraries" [$X360]

@@ -61,6 +61,7 @@ static ConVar cl_downloadfilter( "cl_downloadfilter", "all", FCVAR_ARCHIVE, "Det
 
 extern ConVar sv_downloadurl;
 extern ConVar sv_consistency;
+extern ConVar sv_ignoreconsistency;
 
 extern bool g_bServerGameDLLGreaterThanV5;
 
@@ -1682,10 +1683,15 @@ void CClientState::ConsistencyCheck(bool bChanged )
 	if ( !IsConnected() )
 		return;
 
-	// only if enforce by server
-	if ( !sv_consistency.GetBool() )
+	//only if is not ignoring
+	if(sv_ignoreconsistency.GetBool()){
 		return;
-
+	}else{
+		// only if enforce by server
+		if ( !sv_consistency.GetBool() )
+			return;
+	}
+	
 	// check if material configuration changed
 	static MaterialSystem_Config_t s_LastConfig;
 	MaterialSystem_Config_t newConfig = materials->GetCurrentConfigForVideoCard();

@@ -88,7 +88,7 @@ void CPortalgunEffectBeam::Init( int startAttachment, int endAttachment, CBaseEn
 
 	if ( firstPerson )
 	{
-		beamInfo.m_flWidth = 0.0f;
+		beamInfo.m_flWidth = 0.5f;
 		beamInfo.m_flEndWidth = 2.0f;
 	}
 	else
@@ -98,15 +98,15 @@ void CPortalgunEffectBeam::Init( int startAttachment, int endAttachment, CBaseEn
 	}
 
 	beamInfo.m_flFadeLength = 0.0f;
-	beamInfo.m_flAmplitude = 12;
-	beamInfo.m_flBrightness = 128.0;
-	beamInfo.m_flSpeed = 150.0f;
+	beamInfo.m_flAmplitude = 16;
+	beamInfo.m_flBrightness = 200.0;
+	beamInfo.m_flSpeed = 200.0f;
 	beamInfo.m_nStartFrame = 0.0;
-	beamInfo.m_flFrameRate = 30.0;
-	beamInfo.m_flRed = 255.0;
-	beamInfo.m_flGreen = 255.0;
+	beamInfo.m_flFrameRate = 60.0;
+	beamInfo.m_flRed = 102.0;
+	beamInfo.m_flGreen = 252.0;
 	beamInfo.m_flBlue = 255.0;
-	beamInfo.m_nSegments = 8;
+	beamInfo.m_nSegments = 24;
 	beamInfo.m_bRenderable = true;
 	beamInfo.m_nFlags = FBEAM_FOREVER;
 

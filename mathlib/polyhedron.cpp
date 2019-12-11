@@ -1669,7 +1669,7 @@ CPolyhedron *ClipLinkedGeometry( GeneratePolyhedronFromPlanes_UnorderedPolygonLL
 					else
 						pWorkPolygon = pTestLine->pLine->pPolygons[1 - pTestLine->iReferenceIndex];
 
-					Assert_DumpPolyhedron( pWorkPolygon != pLastWorkPolygon );
+					//Assert_DumpPolyhedron( pWorkPolygon != pLastWorkPolygon ); //Dont dump it  please
 				}
 			} while( pWorkPoint != pStartPoint );
 		}

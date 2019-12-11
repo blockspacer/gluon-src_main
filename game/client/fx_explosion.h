@@ -18,6 +18,8 @@
 #define	EXPLOSION_FORCE_MAX	2
 #define	EXPLOSION_FORCE_MIN	2
 
+class CNewParticleEffect;
+
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
@@ -25,6 +27,7 @@ class C_BaseExplosionEffect
 {
 private:
 	static C_BaseExplosionEffect	m_instance;
+	CSmartPtr<CSimpleEmitter> m_pEmitter;
 
 public:
 			~C_BaseExplosionEffect( void ) {}
@@ -37,7 +40,8 @@ protected:
 					C_BaseExplosionEffect( void );
 
 	virtual void	PlaySound( void );
-
+	
+	
 	virtual void	CreateCore( void );
 	virtual void	CreateDebris( void );
 	virtual void	CreateMisc( void );

@@ -80,6 +80,7 @@ static void host_name_changed_f( IConVar *var, const char *pOldValue, float flOl
 
 ConVar	host_name		( "hostname", "", 0, "Hostname for server.", host_name_changed_f );
 ConVar host_map( "host_map", "", 0, "Current map name." );
+ConVar presented_protocol( "presented_protocol", "0", 0, "Protocol Emulation. (0 = Standard protocol)" );
 
 ConVar voice_recordtofile("voice_recordtofile", "0", 0, "Record mic data and decompressed voice data into 'voice_micdata.wav' and 'voice_decompressed.wav'");
 ConVar voice_inputfromfile("voice_inputfromfile", "0", 0, "Get voice input from 'voice_input.wav' rather than from the microphone.");

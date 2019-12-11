@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="8.00"
+	Version="8,00"
 	Name="Soundsystem"
 	ProjectGUID="{FA5A7479-D735-49F1-AB60-03BF4E54CDAB}"
 	RootNamespace="Soundsystem"
@@ -139,7 +139,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="if EXIST ..\..\game\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\game\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q &quot;$(TargetDir)&quot;$(TargetFileName)&#x0D;&#x0A;set path=..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\devtools\bin\vpc.exe ..\devtools\bin\vpc.exe -crc soundsystem.vpc b48c08ac -crc ..\vpc_scripts\source_dll_win32_base.vpc a763463a -crc ..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\vpc_scripts\source_dll_win32_debug.vpc 5f68c24a -crc ..\vpc_scripts\source_dll_win32_release.vpc 4275ffe4&#x0D;&#x0A;"
+				CommandLine="if EXIST ..\..\game\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\game\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q &quot;$(TargetDir)&quot;$(TargetFileName)&#x0D;&#x0A;set path=..\..\game\bin;%path%"
 				ExcludedFromBuild="false"
 			/>
 			<Tool

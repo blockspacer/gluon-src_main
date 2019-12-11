@@ -22,7 +22,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="if EXIST ..\..\..\game\hl2mp\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\hl2mp\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q &quot;$(TargetDir)&quot;$(TargetFileName)&#x0D;&#x0A;set path=..\..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\..\devtools\bin\vpc.exe ..\..\devtools\bin\vpc.exe -crc client_hl2mp.vpc 767fe5a6 -crc ..\..\game\client\client_base.vpc f5eda21d -crc ..\..\vpc_scripts\source_dll_win32_base.vpc f4abb8ab -crc ..\..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\..\vpc_scripts\source_dll_win32_debug.vpc 5f68c24a -crc ..\..\vpc_scripts\source_dll_win32_release.vpc 4275ffe4&#x0D;&#x0A;"
+				CommandLine="if EXIST ..\..\..\game\hl2mp\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\hl2mp\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q &quot;$(TargetDir)&quot;$(TargetFileName)&#x0D;&#x0A;set path=..\..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\..\devtools\bin\vpc.exe ..\..\devtools\bin\vpc.exe -crc client_hl2mp.vpc 767fe5a6 -crc ..\..\game\client\client_base.vpc e42b795c -crc ..\..\vpc_scripts\source_dll_win32_base.vpc f4abb8ab -crc ..\..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\..\vpc_scripts\source_dll_win32_debug.vpc 5f68c24a -crc ..\..\vpc_scripts\source_dll_win32_release.vpc 4275ffe4&#x0D;&#x0A;"
 				ExcludedFromBuild="false"
 			/>
 			<Tool
@@ -140,7 +140,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="if EXIST ..\..\..\game\hl2mp\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\hl2mp\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q &quot;$(TargetDir)&quot;$(TargetFileName)&#x0D;&#x0A;set path=..\..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\..\devtools\bin\vpc.exe ..\..\devtools\bin\vpc.exe -crc client_hl2mp.vpc 767fe5a6 -crc ..\..\game\client\client_base.vpc f5eda21d -crc ..\..\vpc_scripts\source_dll_win32_base.vpc f4abb8ab -crc ..\..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\..\vpc_scripts\source_dll_win32_debug.vpc 5f68c24a -crc ..\..\vpc_scripts\source_dll_win32_release.vpc 4275ffe4&#x0D;&#x0A;"
+				CommandLine="if EXIST ..\..\..\game\hl2mp\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\..\game\hl2mp\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q &quot;$(TargetDir)&quot;$(TargetFileName)&#x0D;&#x0A;set path=..\..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\..\devtools\bin\vpc.exe ..\..\devtools\bin\vpc.exe -crc client_hl2mp.vpc 767fe5a6 -crc ..\..\game\client\client_base.vpc e42b795c -crc ..\..\vpc_scripts\source_dll_win32_base.vpc f4abb8ab -crc ..\..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\..\vpc_scripts\source_dll_win32_debug.vpc 5f68c24a -crc ..\..\vpc_scripts\source_dll_win32_release.vpc 4275ffe4&#x0D;&#x0A;"
 				ExcludedFromBuild="false"
 			/>
 			<Tool
@@ -2957,11 +2957,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\lib\public\fmodex_vc.lib"
+				>
+			</File>
+			<File
 				RelativePath="..\..\lib\public\mathlib.lib"
 				>
 			</File>
 			<File
+				RelativePath="..\..\lib\public\openvr_api.lib"
+				>
+			</File>
+			<File
 				RelativePath="..\..\lib\public\Particles.lib"
+				>
+			</File>
+			<File
+				RelativePath="..\..\lib\public\SMPSPlay.lib"
 				>
 			</File>
 			<File
@@ -3046,6 +3058,10 @@
 			</File>
 			<File
 				RelativePath=".\baseclientrendertargets.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\gameui\BasePanel.h"
 				>
 			</File>
 			<File
@@ -3314,6 +3330,14 @@
 			</File>
 			<File
 				RelativePath=".\flashlighteffect.h"
+				>
+			</File>
+			<File
+				RelativePath=".\fmod_manager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\fmod_manager.h"
 				>
 			</File>
 			<File
@@ -3833,6 +3857,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\vr_system.h"
+				>
+			</File>
+			<File
 				RelativePath=".\weapon_selection.h"
 				>
 			</File>
@@ -4066,6 +4094,34 @@
 			</File>
 			<File
 				RelativePath="..\..\public\filesystem_helpers.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod_codec.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod_dsp.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod_errors.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod_memoryinfo.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\fmod\fmod_output.h"
 				>
 			</File>
 			<File
@@ -4469,6 +4525,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\public\openvr.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\public\overlaytext.h"
 				>
 			</File>
@@ -4493,11 +4553,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\public\Awesomium\Platform.h"
+				RelativePath="..\..\public\tier0\platform.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\public\tier0\platform.h"
+				RelativePath="..\..\public\Awesomium\Platform.h"
 				>
 			</File>
 			<File
@@ -4598,6 +4658,10 @@
 			</File>
 			<File
 				RelativePath="..\..\public\tier1\smartptr.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\public\SMPSPlay.h"
 				>
 			</File>
 			<File

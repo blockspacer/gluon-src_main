@@ -783,7 +783,7 @@ void CPortal_Player::UpdatePortalPlaneSounds( void )
 					if ( GetParametersForSound( "PortalPlayer.EnterPortal", params, NULL ) )
 					{
 						EmitSound_t ep( params );
-						ep.m_nPitch = 80.0f + vVelocity.Length() * 0.03f;
+						ep.m_nPitch = (80.0f + vVelocity.Length() * 0.03f) * 1.15;
 						ep.m_flVolume = min( 0.3f + vVelocity.Length() * 0.00075f, 1.0f );
 
 						EmitSound( filter, entindex(), ep );
@@ -803,7 +803,7 @@ void CPortal_Player::UpdatePortalPlaneSounds( void )
 					if ( GetParametersForSound( "PortalPlayer.ExitPortal", params, NULL ) )
 					{
 						EmitSound_t ep( params );
-						ep.m_nPitch = 80.0f + vVelocity.Length() * 0.03f;
+						ep.m_nPitch = (80.0f + vVelocity.Length() * 0.03f) * 1.15;
 						ep.m_flVolume = min( 0.3f + vVelocity.Length() * 0.00075f, 1.0f );
 
 						EmitSound( filter, entindex(), ep );

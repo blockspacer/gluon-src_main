@@ -22,6 +22,7 @@
 #include <vgui_controls/Panel.h>
 #include <KeyValues.h>
 #include "FileSystem.h"
+#include "fmod_manager.h"
 
 #if defined ( NGUI )
 #include "INPanel.h"
@@ -165,6 +166,8 @@ void VGui_CreateGlobalPanels( void )
 	NPanel->Create( gameNGUI );
 	engine->ClientCmd_Unrestricted( "ngui_use 1" );
 #endif
+
+	FMODManager()->PlayAmbientSound( "mainmenu.mp3", false);
 	// Part of game
 	internalCenterPrint->Create( gameToolParent );
 	loadingdisc->Create( gameToolParent );

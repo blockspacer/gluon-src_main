@@ -16,6 +16,7 @@
 #include "energy_wave.h"
 #include "te_particlesystem.h"
 #include "ndebugoverlay.h"
+#include "particle_parse.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
@@ -264,7 +265,9 @@ CWeaponCGuard::CWeaponCGuard( void )
 void CWeaponCGuard::Precache( void )
 {
 	UTIL_PrecacheOther( "concussiveblast" );
-
+	PrecacheParticleSystem( "weapon_glock_muzzleflash" );
+	
+	
 	m_beamIndex = PrecacheModel( "sprites/bluelaser1.vmt" );
 	m_haloIndex = PrecacheModel( "sprites/blueshaft1.vmt" );
 
@@ -365,10 +368,16 @@ void CWeaponCGuard::UpdateLasers( void )
 //-----------------------------------------------------------------------------
 void CWeaponCGuard::PrimaryAttack( void )
 {
+	CBasePlayer *pOwner = ToBasePlayer( GetOwner() );
+	
 	if ( m_flChargeTime >= gpGlobals->curtime )
 		return;
 		
+	SendWeaponAnim( ACT_VM_PRIMARYATTACK );
+	
 	AlertTargets();
+	
+	DispatchParticleEffect( "weapon_glock_muzzleflash", PATTACH_POINT_FOLLOW, pOwner->GetViewModel(), "muzzle", true);
 
 	WeaponSound( SPECIAL1 );
 

@@ -82,7 +82,8 @@ void CWeaponPortalgun::Precache()
 	PrecacheScriptSound( "Portal.fizzle_moved" );
 	PrecacheScriptSound( "Portal.fizzle_invalid_surface" );
 	PrecacheScriptSound( "Weapon_Portalgun.powerup" );
-	PrecacheScriptSound( "Weapon_PhysCannon.HoldSound" );
+	PrecacheScriptSound( "Weapon_Portalgun.HoldSound" );
+	PrecacheScriptSound( "NPC_CombineBall.KillImpact" );
 
 #ifndef CLIENT_DLL
 	PrecacheParticleSystem( "portal_1_projectile_stream" );
@@ -90,7 +91,9 @@ void CWeaponPortalgun::Precache()
 	PrecacheParticleSystem( "portal_2_projectile_stream" );
 	PrecacheParticleSystem( "portal_2_projectile_stream_pedestal" );
 	PrecacheParticleSystem( "portal_1_charge" );
+	PrecacheParticleSystem( "portal_1_charge_glow" );
 	PrecacheParticleSystem( "portal_2_charge" );
+	PrecacheParticleSystem( "portal_2_charge_glow" );
 #endif
 }
 

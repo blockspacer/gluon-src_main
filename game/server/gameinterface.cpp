@@ -92,6 +92,9 @@
 #include "portal_player.h"
 #endif
 
+extern void PythonInit();
+extern void PythonShutdown();
+
 extern IToolFrameworkServer *g_pToolFrameworkServer;
 extern IParticleSystemQuery *g_pParticleSystemQuery;
 
@@ -657,6 +660,8 @@ bool CServerGameDLL::DLLInit( CreateInterfaceFn appSystemFactory,
 	gamestatsuploader->InitConnection();
 #endif
 
+	PythonInit();
+
 	return true;
 }
 
@@ -702,6 +707,8 @@ void CServerGameDLL::DLLShutdown( void )
 	}
 #endif
 
+	PythonShutdown();
+	
 	DisconnectTier3Libraries();
 	DisconnectTier2Libraries();
 	ConVar_Unregister();

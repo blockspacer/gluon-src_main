@@ -56,6 +56,11 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
+extern void PythonInit();
+extern void PythonShutdown();
+extern void PythonInitHandles();
+extern void PythonShutdownHandles();
+
 #define ONE_HUNDRED_TWENTY_EIGHT_MB	(128 * 1024 * 1024)
 
 ConVar mem_min_heapsize( "mem_min_heapsize", "48", 0, "Minimum amount of memory to dedicate to engine hunk and datacache (in mb)" );
@@ -870,6 +875,9 @@ int Sys_InitGame( CreateInterfaceFn appSystemFactory, const char* pBaseDir, void
 
 	MapReslistGenerator_BuildMapList();
 
+	PythonInit();
+	PythonInitHandles();
+	
 	return 1;
 }
 
@@ -888,6 +896,9 @@ void Sys_ShutdownGame( void )
 
 	TRACESHUTDOWN( Sys_Shutdown() );
 
+	PythonShutdownHandles();
+	PythonShutdown();
+	
 	// Remove debug spew output....
 	developer.InstallChangeCallback( 0 );
 	SpewOutputFunc( 0 );
@@ -911,6 +922,8 @@ public:
 
 	virtual bool DLLInit( CreateInterfaceFn engineFactory, CreateInterfaceFn physicsFactory, CreateInterfaceFn fileSystemFactory, CGlobalVars *pGlobals )
 	{
+		PythonInit();
+		PythonInitHandles();
 		return m_pServerGameDLL->DLLInit( engineFactory, physicsFactory, fileSystemFactory, pGlobals );
 	}
 
@@ -951,6 +964,8 @@ public:
 
 	virtual void DLLShutdown( void )
 	{
+		PythonShutdown();
+		PythonShutdownHandles();
 		m_pServerGameDLL->DLLShutdown( );
 	}
 

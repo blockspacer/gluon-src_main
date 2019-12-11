@@ -8,6 +8,7 @@ $Macro SRCDIR		"..\.."
 $Macro GAMENAME 	"tf"
 
 $Include "$SRCDIR\game\client\client_base.vpc"
+//$Include "$SRCDIR\game\client\client_nextbot.vpc"
 
 $Configuration
 {

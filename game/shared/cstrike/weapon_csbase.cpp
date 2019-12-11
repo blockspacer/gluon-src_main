@@ -11,6 +11,7 @@
 #include "weapon_csbase.h"
 #include "ammodef.h"
 #include "cs_gamerules.h"
+#include "particle_parse.h"
 
 
 #if defined( CLIENT_DLL )
@@ -668,6 +669,19 @@ void CWeaponCSBase::Precache( void )
 	}
 #endif
 
+
+	PrecacheParticleSystem( "weapon_glock_muzzleflash" );
+	PrecacheParticleSystem( "weapon_glock_muzzle_glow");
+	PrecacheParticleSystem( "weapon_glock_muzzle_smoke" );
+	PrecacheParticleSystem( "weapon_glock_smoke" );
+	PrecacheParticleSystem( "weapon_glock_sparks" );
+	
+	
+	PrecacheParticleSystem( "weapon_mp5_muzzleflash" );
+	PrecacheParticleSystem( "muzzle_smoke_mp5_flash");
+	PrecacheParticleSystem( "muzzle_smoke_mp5" );
+	PrecacheParticleSystem( "muzzle_glow_mp5" );
+	
 	PrecacheScriptSound( "Default.ClipEmpty_Pistol" );
 	PrecacheScriptSound( "Default.ClipEmpty_Rifle" );
 
@@ -1087,6 +1101,11 @@ void CWeaponCSBase::DefaultTouch(CBaseEntity *pOther)
 			data.m_hEntity = pViewModel->GetRefEHandle();
 			data.m_nAttachmentIndex = 1;
 			data.m_flScale = GetCSWpnData().m_flMuzzleScale;
+			
+			Vector vAttachment;
+			QAngle dummyAngles;
+			pViewModel->GetAttachment( data.m_nAttachmentIndex, vAttachment, dummyAngles );
+			
 		
 			switch( GetMuzzleFlashStyle() )
 			{
@@ -1095,6 +1114,10 @@ void CWeaponCSBase::DefaultTouch(CBaseEntity *pOther)
 
 			case CS_MUZZLEFLASH_X:
 				{
+					//DispatchParticleEffect( "weapon_mp5_muzzleflash", PATTACH_POINT_FOLLOW, pViewModel, data.m_nAttachmentIndex, true);
+					DispatchParticleEffect( "muzzle_smoke_mp5_flash", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
+					DispatchParticleEffect( "muzzle_smoke_mp5", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
+					DispatchParticleEffect( "muzzle_glow_mp5", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
 					DispatchEffect( "CS_MuzzleFlash_X", data );
 				}
 				break;
@@ -1102,6 +1125,16 @@ void CWeaponCSBase::DefaultTouch(CBaseEntity *pOther)
 			case CS_MUZZLEFLASH_NORM:
 			default:
 				{
+					//DispatchParticleEffect( "weapon_glock_muzzleflash", PATTACH_POINT_FOLLOW, pViewModel, data.m_nAttachmentIndex, true);
+					/*
+					DispatchParticleEffect( "weapon_glock_muzzle_glow", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
+					DispatchParticleEffect( "weapon_glock_muzzle_smoke", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
+					DispatchParticleEffect( "weapon_glock_smoke", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
+					DispatchParticleEffect( "weapon_glock_sparks", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
+					*/
+					DispatchParticleEffect( "muzzle_smoke_mp5_flash", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
+					DispatchParticleEffect( "muzzle_smoke_mp5", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
+					DispatchParticleEffect( "muzzle_glow_mp5", vAttachment, pViewModel->GetAbsAngles(), pViewModel);
 					DispatchEffect( "CS_MuzzleFlash", data );
 				}
 				break;

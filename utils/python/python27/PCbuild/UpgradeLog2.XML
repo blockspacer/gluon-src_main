@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="pcbuild">
+</Property><Property Name="Solution File" Value="D:\gluon_code\src_main\utils\python\python27\PCbuild\pcbuild.sln">
+</Property><Property Name="Date" Value="sábado, 19 de outubro de 2019">
+</Property><Property Name="Time" Value="13:40:14">
+</Property><Property Name="Log Number" Value="2">
+</Property></Properties><Event ErrorLevel="2" Project="D:\gluon_code\src_main\utils\python\python27\PCbuild\python.vcxproj" Source="python" Description="Cannot load the project due to a corrupt project file.">
+</Event><Event ErrorLevel="2" Project="python" Source="python.vcxproj" Description="Project upgrade failed.">
+</Event><Event ErrorLevel="3" Project="python" Source="python.vcxproj" Description="Not Converted">
+</Event></UpgradeLog>

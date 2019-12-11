@@ -1,5 +1,6 @@
 #include "cbase.h"
 #include "ngui_handler.h"
+
 using namespace Awesomium;
 
 #ifdef PostMessage

@@ -66,6 +66,9 @@ const float RUN_SPEED_ESTIMATE_SQR = 150.0f * 150.0f;
 #undef CBaseAnimating
 #endif
 
+void TE_DynamicLight( IRecipientFilter& filter, float delay,
+	const Vector* org, int r, int g, int b, int exponent, float radius, float time, float decay, int nLightIndex = LIGHT_INDEX_TE_DYNAMIC );
+
 
 mstudioevent_t *GetEventIndexForSequence( mstudioseqdesc_t &seqdesc );
 
@@ -2994,6 +2997,7 @@ void C_BaseAnimating::ProcessMuzzleFlashEvent()
 			AngleVectors( angles, &vAng );
 			vAttachment += vAng * 2;
 		
+			/*
 			dlight_t *dl = effects->CL_AllocDlight ( index );
 			dl->origin = vAttachment;
 			dl->color.r = 255;
@@ -3002,6 +3006,10 @@ void C_BaseAnimating::ProcessMuzzleFlashEvent()
 			dl->die = gpGlobals->curtime + 0.05f;
 			dl->radius = random->RandomFloat( 245.0f, 256.0f );
 			dl->decay = 512.0f;
+			*/
+			
+			CPVSFilter filter(vAttachment);
+			TE_DynamicLight( filter, 0.0, &(vAttachment), 231, 219, 14, 5, 70, 0.05, 768 );
 		}
 	}
 }

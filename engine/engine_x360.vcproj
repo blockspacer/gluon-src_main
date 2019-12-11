@@ -3,7 +3,6 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="engine"
-	ProjectGUID="{1E9EC2E8-57F7-47E2-BCA6-CF2966D0ADD1}"
 	>
 	<Platforms>
 		<Platform
@@ -25,7 +24,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="if EXIST ..\..\game\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\game\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q $(TargetDir)$(TargetName)_converted.dll&#x0D;&#x0A;set path=..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\devtools\bin\vpc.exe ..\devtools\bin\vpc.exe -crc engine.vpc 49cc55ee -crc ..\vpc_scripts\source_dll_x360_base.vpc df878f85 -crc ..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\vpc_scripts\source_dll_x360_debug.vpc b03eba60 -crc ..\vpc_scripts\source_dll_x360_release.vpc 0f313f3e&#x0D;&#x0A;"
+				CommandLine="if EXIST ..\..\game\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\game\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q $(TargetDir)$(TargetName)_converted.dll&#x0D;&#x0A;set path=..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\devtools\bin\vpc.exe ..\devtools\bin\vpc.exe -crc engine.vpc 7e99ebd1 -crc ..\vpc_scripts\source_dll_x360_base.vpc df878f85 -crc ..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\vpc_scripts\source_dll_x360_debug.vpc b03eba60 -crc ..\vpc_scripts\source_dll_x360_release.vpc 0f313f3e&#x0D;&#x0A;"
 				ExcludedFromBuild="false"
 			/>
 			<Tool
@@ -52,8 +51,8 @@
 				FavorSizeOrSpeed="0"
 				EnableFiberSafeOptimizations="false"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="..\common;..\public;..\public\tier0;..\public\tier1;.\;audio;audio\private;audio\public;..\vgui2\include;..\vgui2\controls"
-				PreprocessorDefinitions="_X360;_DEBUG;DEBUG;_USRDLL;_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;USE_CONVARS;VOICE_OVER_IP;BUMPMAP;__USEA3D;_ADD_EAX_;ENGINE_DLL;PROTECTED_THINGS_ENABLE;fopen=dont_use_fopen"
+				AdditionalIncludeDirectories="..\common;..\public;..\public\tier0;..\public\tier1;.\;audio;audio\private;audio\public;..\vgui2\include;..\vgui2\controls;..\public\python"
+				PreprocessorDefinitions="_X360;_DEBUG;DEBUG;_USRDLL;_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;USE_CONVARS;VOICE_OVER_IP;BUMPMAP;__USEA3D;_ADD_EAX_;ENGINE_DLL;PROTECTED_THINGS_ENABLE;Py_NO_ENABLE_SHARED;BOOST_PYTHON_STATIC_LIB;BOOST_PYTHON_SOURCE;BOOST_PYTHON_NO_LIB;fopen=dont_use_fopen"
 				IgnoreStandardIncludePath="false"
 				GeneratePreprocessedFile="0"
 				KeepComments="false"
@@ -149,6 +148,8 @@
 				ProjectDefaults="..\common\hl2orange.xml"
 				TitleID="0x4541080F"
 				ExportByName="false"
+				Privilege_NoODDMapping="false"
+				Privilege_PAL50Incompatible="false"
 			/>
 			<Tool
 				Name="VCBscMakeTool"
@@ -185,7 +186,7 @@
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
-				CommandLine="if EXIST ..\..\game\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\game\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q $(TargetDir)$(TargetName)_converted.dll&#x0D;&#x0A;set path=..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\devtools\bin\vpc.exe ..\devtools\bin\vpc.exe -crc engine.vpc 49cc55ee -crc ..\vpc_scripts\source_dll_x360_base.vpc df878f85 -crc ..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\vpc_scripts\source_dll_x360_debug.vpc b03eba60 -crc ..\vpc_scripts\source_dll_x360_release.vpc 0f313f3e&#x0D;&#x0A;"
+				CommandLine="if EXIST ..\..\game\bin\$(TargetFileName) for /f &quot;delims=&quot; %%A in (&apos;attrib &quot;..\..\game\bin\$(TargetFileName)&quot;&apos;) do set valveTmpIsReadOnly=&quot;%%A&quot;&#x0D;&#x0A;set valveTmpIsReadOnlyLetter=%valveTmpIsReadOnly:~6,1%&#x0D;&#x0A;if &quot;%valveTmpIsReadOnlyLetter%&quot;==&quot;R&quot; del /q $(TargetDir)$(TargetName)_converted.dll&#x0D;&#x0A;set path=..\..\game\bin;%path%&#x0D;&#x0A;if exist ..\devtools\bin\vpc.exe ..\devtools\bin\vpc.exe -crc engine.vpc 7e99ebd1 -crc ..\vpc_scripts\source_dll_x360_base.vpc df878f85 -crc ..\vpc_scripts\version.vpc 26d8e8a7 -crc ..\vpc_scripts\loadaddress.vpc 49fd4a9f -crc ..\vpc_scripts\source_dll_x360_debug.vpc b03eba60 -crc ..\vpc_scripts\source_dll_x360_release.vpc 0f313f3e&#x0D;&#x0A;"
 				ExcludedFromBuild="false"
 			/>
 			<Tool
@@ -210,8 +211,8 @@
 				InlineFunctionExpansion="2"
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="..\common;..\public;..\public\tier0;..\public\tier1;.\;audio;audio\private;audio\public;..\vgui2\include;..\vgui2\controls"
-				PreprocessorDefinitions="_X360;NDEBUG;_USRDLL;_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;__VMX128_SUPPORTED;USE_CONVARS;VOICE_OVER_IP;BUMPMAP;__USEA3D;_ADD_EAX_;ENGINE_DLL;PROTECTED_THINGS_ENABLE;fopen=dont_use_fopen"
+				AdditionalIncludeDirectories="..\common;..\public;..\public\tier0;..\public\tier1;.\;audio;audio\private;audio\public;..\vgui2\include;..\vgui2\controls;..\public\python"
+				PreprocessorDefinitions="_X360;NDEBUG;_USRDLL;_WIN32;WIN32;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;__VMX128_SUPPORTED;USE_CONVARS;VOICE_OVER_IP;BUMPMAP;__USEA3D;_ADD_EAX_;ENGINE_DLL;PROTECTED_THINGS_ENABLE;Py_NO_ENABLE_SHARED;BOOST_PYTHON_STATIC_LIB;BOOST_PYTHON_SOURCE;BOOST_PYTHON_NO_LIB;fopen=dont_use_fopen"
 				KeepComments="false"
 				StringPooling="true"
 				MinimalRebuild="false"
@@ -296,6 +297,8 @@
 				ProjectDefaults="..\common\hl2orange.xml"
 				TitleID="0x4541080F"
 				ExportByName="false"
+				Privilege_NoODDMapping="false"
+				Privilege_PAL50Incompatible="false"
 			/>
 			<Tool
 				Name="VCBscMakeTool"
@@ -554,6 +557,18 @@
 			</File>
 			<File
 				RelativePath=".\gametrace_engine.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ge_pymanager.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ge_pymanager.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ge_pymodules.cpp"
 				>
 			</File>
 			<File
@@ -905,7 +920,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\lib\public\Dmxloader_360.lib"
+				RelativePath="..\lib\public\dmxloader_360.lib"
 				>
 			</File>
 			<File
@@ -5540,6 +5555,4 @@
 			</File>
 		</Filter>
 	</Files>
-	<Globals>
-	</Globals>
 </VisualStudioProject>

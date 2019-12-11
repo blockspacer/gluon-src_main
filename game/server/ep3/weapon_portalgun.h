@@ -52,6 +52,7 @@ public:
 
 	virtual void CreateSounds( void );
 	virtual void StopLoopingSounds( void );
+	void	FireHitscanBolt();
 
 	virtual void OnRestore( void );
 	virtual void UpdateOnRemove( void );
@@ -105,7 +106,7 @@ public:
 	COutputEvent m_OnFiredPortal2;		// Fires when the gun's second (red) portal is fired
 
 	void DryFire( void );
-	virtual float GetFireRate( void ) { return 0.7; };
+	virtual float GetFireRate( void ) { return 0.5; };
 	void WeaponIdle( void );
 
 	PortalWeaponID GetWeaponID( void ) const { return WEAPON_PORTALGUN; }

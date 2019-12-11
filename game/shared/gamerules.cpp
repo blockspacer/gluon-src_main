@@ -32,6 +32,10 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
+#ifndef CLIENT_DLL
+	extern void PythonInitHandles();
+	extern void PythonShutdownHandles();
+#endif
 
 ConVar g_Language( "g_Language", "0", FCVAR_REPLICATED );
 ConVar sk_autoaim_mode( "sk_autoaim_mode", "1", FCVAR_ARCHIVE | FCVAR_REPLICATED );
@@ -68,12 +72,18 @@ END_NETWORK_TABLE()
 
 CGameRulesProxy::CGameRulesProxy()
 {
+	#ifndef CLIENT_DLL
+		PythonInitHandles();
+	#endif
 	Assert( !s_pGameRulesProxy );
 	s_pGameRulesProxy = this;
 }
 
 CGameRulesProxy::~CGameRulesProxy()
 {
+	#ifndef CLIENT_DLL
+		PythonShutdownHandles();
+	#endif
 	Assert( s_pGameRulesProxy );
 	s_pGameRulesProxy = NULL;
 }
